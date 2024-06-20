@@ -14,10 +14,17 @@ import Profile from "./pages/doctor/Profile";
 import BookingPage from "./pages/BookingPage";
 import Appointments from "./pages/Appointments";
 import DoctorAppointments from "./pages/doctor/DoctorAppointments";
+import AdminPanel from "./pages/admin/AdminPanel";
+import AddSymptoms from "./components/AddSymptoms";
+import AddDisease from "./components/AddDisease";
+import DiseaseRecognition from "./pages/user/DiseaseRecognition";
+import DiseaseDetails from "./pages/user/DiseaseDetails";
 function App() {
   const { loading } = useSelector((state) => state.alerts);
   return (
     <>
+      
+          
       <BrowserRouter>
         {loading ? (
           <Spinner />
@@ -111,6 +118,15 @@ function App() {
                 </ProtectedRoute>
               }
             />
+             <Route  path="/adminPanel"  element={<AdminPanel />}  />
+             <Route  path="/addSymptoms"  element={<AddSymptoms />}  />
+             <Route  path="/addDisease"  element={<AddDisease />}  />
+             <Route  path="/diseaseRecognition"  element={<DiseaseRecognition />}  />
+             <Route  path="/diseaseDetails/:id"  element={<DiseaseDetails />}  />
+
+
+
+
           </Routes>
         )}
       </BrowserRouter>

@@ -1,0 +1,96 @@
+.disease-details-page {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .page-header {
+    text-align: center;
+    margin-bottom: 50px;
+  }
+  
+  .page-header h1 {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+  }
+  
+  .page-header p {
+    font-size: 1.2em;
+    color: #555;
+  }
+  
+  .disease-details-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 20px;
+    /* border:2px solid red; */
+  }
+  
+  .disease-details {
+    flex: 1;
+    margin-right: 20px;
+    padding: 20px;
+    /* border: 1px solid #ccc; */
+    border-radius: 10px;
+    /* background-color: #f9f9f9; */
+    /* border:2px solid green; */
+  }
+  
+  .headings {
+    font-size: 20px;
+    font-weight: bold;
+  }
+  
+  .disease-details h2 {
+    margin-bottom: 20px;
+  }
+  
+  .disease-details p {
+    margin: 10px 0;
+  }
+  
+  .disease-details ul {
+    list-style-type: disc;
+    padding-left: 20px;
+  }
+  
+  .instruction {
+    margin-top: 20px;
+    font-size: 16px;
+    color: #555;
+  }
+  
+  .button-row {
+    margin-top: 20px;
+    display: flex;
+    justify-content: flex-start;
+  }
+  
+  .button-row .btn {
+    background-color:#01443d ;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 10px;
+  }
+  
+  .button-row .btn:hover {
+    background-color: #4a9e9c;
+  }
+  
+  .disease-image {
+    flex: 0 0 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .disease-image img {
+    /* max-width: 100%; */
+    /* height: auto; */
+    border-radius: 10px;
+  }
+  
