@@ -1,4 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import React from 'react';
+
 import HomePage from "./pages/HomePage";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
@@ -14,6 +16,9 @@ import Profile from "./pages/doctor/Profile";
 import BookingPage from "./pages/BookingPage";
 import Appointments from "./pages/Appointments";
 import DoctorAppointments from "./pages/doctor/DoctorAppointments";
+import Hero from "./components/Hero";
+import Diseases from "./components/Diseases";
+
 function App() {
   const { loading } = useSelector((state) => state.alerts);
   return (
@@ -28,6 +33,14 @@ function App() {
               element={
                 <ProtectedRoute>
                   <ApplyDoctor />
+                </ProtectedRoute>
+              }
+            />
+             <Route
+              path="/disease"
+              element={
+                <ProtectedRoute>
+                  <Diseases />
                 </ProtectedRoute>
               }
             />
@@ -103,15 +116,25 @@ function App() {
                 </ProtectedRoute>
               }
             />
-            <Route
+            {/* <Route
               path="/"
               element={
                 <ProtectedRoute>
                   <HomePage />
                 </ProtectedRoute>
               }
+            /> */}
+            <Route
+              path="/"
+              element={
+                <ProtectedRoute>
+                  <Hero />
+                </ProtectedRoute>
+              }
             />
           </Routes>
+         
+
         )}
       </BrowserRouter>
     </>
