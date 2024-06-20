@@ -1,4 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import React from 'react';
+
 import HomePage from "./pages/HomePage";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
@@ -19,6 +21,9 @@ import AddSymptoms from "./components/AddSymptoms";
 import AddDisease from "./components/AddDisease";
 import DiseaseRecognition from "./pages/user/DiseaseRecognition";
 import DiseaseDetails from "./pages/user/DiseaseDetails";
+import Hero from "./components/Hero";
+
+
 function App() {
   const { loading } = useSelector((state) => state.alerts);
   return (
@@ -38,6 +43,23 @@ function App() {
                 </ProtectedRoute>
               }
             />
+             <Route
+              path="/profile"
+              element={
+                <ProtectedRoute>
+                  <Profile />
+                </ProtectedRoute>
+              }
+            />
+             <Route
+              path="/appointment"
+              element={
+                <ProtectedRoute>
+                  <Appointments />
+                </ProtectedRoute>
+              }
+            />
+             
             <Route
               path="/admin/users"
               element={
@@ -110,24 +132,25 @@ function App() {
                 </ProtectedRoute>
               }
             />
-            <Route
+            {/* <Route
               path="/"
               element={
                 <ProtectedRoute>
                   <HomePage />
                 </ProtectedRoute>
               }
+            /> */}
+            <Route
+              path="/"
+              element={
+                <ProtectedRoute>
+                  <Hero />
+                </ProtectedRoute>
+              }
             />
-             <Route  path="/adminPanel"  element={<AdminPanel />}  />
-             <Route  path="/addSymptoms"  element={<AddSymptoms />}  />
-             <Route  path="/addDisease"  element={<AddDisease />}  />
-             <Route  path="/diseaseRecognition"  element={<DiseaseRecognition />}  />
-             <Route  path="/diseaseDetails/:id"  element={<DiseaseDetails />}  />
-
-
-
-
           </Routes>
+         
+
         )}
       </BrowserRouter>
     </>

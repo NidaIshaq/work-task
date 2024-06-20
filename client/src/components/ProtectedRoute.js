@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Navigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
 import { hideLoading, showLoading } from "../redux/features/alertSlice";
@@ -7,10 +7,10 @@ import { setUser } from "../redux/features/userSlice";
 
 export default function ProtectedRoute({ children }) {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { user } = useSelector((state) => state.user);
 
   //get user
-  //eslint-disable-next-line
   const getUser = async () => {
     try {
       dispatch(showLoading());
@@ -28,12 +28,13 @@ export default function ProtectedRoute({ children }) {
         dispatch(setUser(res.data.data));
       } else {
         localStorage.clear();
-        <Navigate to="/login" />;
+        navigate("/login");
       }
     } catch (error) {
       localStorage.clear();
       dispatch(hideLoading());
       console.log(error);
+      navigate("/login");
     }
   };
 
@@ -41,7 +42,7 @@ export default function ProtectedRoute({ children }) {
     if (!user) {
       getUser();
     }
-  }, [user, getUser]);
+  }, [user]);
 
   if (localStorage.getItem("token")) {
     return children;

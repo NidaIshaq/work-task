@@ -4,7 +4,7 @@ const {
   registerController,
   authController,
   applyDoctorController,
-  getAllNotificationController,
+ 
   deleteAllNotificationController,
   getAllDocotrsController,
   bookeAppointmnetController,
@@ -27,14 +27,14 @@ router.post("/register", registerController);
 router.post("/getUserData", authMiddleware, authController);
 
 //APply Doctor || POST
-router.post("/apply-doctor", authMiddleware, applyDoctorController);
+router.post("/apply-doctor",authMiddleware, applyDoctorController);
 
 //Notifiaction  Doctor || POST
-router.post(
-  "/get-all-notification",
-  authMiddleware,
-  getAllNotificationController
-);
+// router.post(
+//   "/get-all-notification",
+//   authMiddleware,
+//   getAllNotificationController
+// );
 //Notifiaction  Doctor || POST
 router.post(
   "/delete-all-notification",

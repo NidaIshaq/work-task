@@ -5,6 +5,8 @@ const doctorModel = require("../models/doctorModel");
 const appointmentModel = require("../models/appointmentModel");
 const moment = require("moment");
 const dotenv = require("dotenv");
+
+
 //register callback
 const registerController = async (req, res) => {
   try {
@@ -83,55 +85,42 @@ const authController = async (req, res) => {
 // APpply DOctor CTRL
 const applyDoctorController = async (req, res) => {
   try {
-    const newDoctor = await doctorModel({ ...req.body, status: "pending" });
+    const newDoctor = new doctorModel({ ...req.body, status: "pending" });
     await newDoctor.save();
     const adminUser = await userModel.findOne({ isAdmin: true });
-    const notifcation = adminUser.notifcation;
-    notifcation.push({
+
+    if (!adminUser) {
+      return res.status(404).send({
+        success: false,
+        message: "Admin user not found",
+      });
+    }
+
+    if (!adminUser.notification) {
+      adminUser.notification = [];
+    }
+
+    adminUser.notification.push({
       type: "apply-doctor-request",
-      message: `${newDoctor.firstName} ${newDoctor.lastName} Has Applied For A Doctor Account`,
+      message: `${newDoctor.firstName} ${newDoctor.lastName} has applied for a doctor account`,
       data: {
         doctorId: newDoctor._id,
-        name: newDoctor.firstName + " " + newDoctor.lastName,
-        onClickPath: "/admin/docotrs",
+        name: `${newDoctor.firstName} ${newDoctor.lastName}`,
+        onClickPath: "/admin/doctors",
       },
     });
-    await userModel.findByIdAndUpdate(adminUser._id, { notifcation });
+
+    await userModel.findByIdAndUpdate(adminUser._id, { notification: adminUser.notification });
     res.status(201).send({
       success: true,
-      message: "Doctor Account Applied SUccessfully",
+      message: "Doctor account applied successfully",
     });
   } catch (error) {
-    console.log(error);
+    console.error("Error while applying for doctor:", error);
     res.status(500).send({
       success: false,
       error,
-      message: "Error WHile Applying For Doctotr",
-    });
-  }
-};
-
-//notification ctrl
-const getAllNotificationController = async (req, res) => {
-  try {
-    const user = await userModel.findOne({ _id: req.body.userId });
-    const seennotification = user.seennotification;
-    const notifcation = user.notifcation;
-    seennotification.push(...notifcation);
-    user.notifcation = [];
-    user.seennotification = notifcation;
-    const updatedUser = await user.save();
-    res.status(200).send({
-      success: true,
-      message: "all notification marked as read",
-      data: updatedUser,
-    });
-  } catch (error) {
-    console.log(error);
-    res.status(500).send({
-      message: "Error in notification",
-      success: false,
-      error,
+      message: "Error while applying for doctor",
     });
   }
 };
@@ -270,7 +259,7 @@ module.exports = {
   registerController,
   authController,
   applyDoctorController,
-  getAllNotificationController,
+ 
   deleteAllNotificationController,
   getAllDocotrsController,
   bookeAppointmnetController,

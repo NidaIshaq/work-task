@@ -2,23 +2,30 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Layout from "./../components/Layout";
 import moment from "moment";
-import { Table } from "antd";
+import { Table, message } from "antd";
 
 const Appointments = () => {
   const [appointments, setAppointments] = useState([]);
 
   const getAppointments = async () => {
     try {
+      const token = localStorage.getItem("token");
+      if (!token) {
+        throw new Error("Authorization token not found");
+      }
+
       const res = await axios.get("/api/v1/user/user-appointments", {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
+        headers: { Authorization: `Bearer ${token}` },
       });
+
       if (res.data.success) {
         setAppointments(res.data.data);
+      } else {
+        throw new Error(res.data.message || "Failed to fetch appointments");
       }
     } catch (error) {
-      console.log(error);
+      console.error("Error fetching appointments:", error);
+      message.error(error.message || "Failed to fetch appointments");
     }
   };
 
@@ -27,46 +34,38 @@ const Appointments = () => {
   }, []);
 
   const columns = [
+    { title: "ID", dataIndex: "_id" },
     {
-      title: "ID",
-      dataIndex: "_id",
+      title: "Name",
+      dataIndex: "doctorInfo",
+      render: (doctorInfo) => (
+        <span>{`${doctorInfo.firstName} ${doctorInfo.lastName}`}</span>
+      ),
     },
-    // {
-    //   title: "Name",
-    //   dataIndex: "name",
-    //   render: (text, record) => (
-    //     <span>
-    //       {record.doctorInfo.firstName} {record.doctorInfo.lastName}
-    //     </span>
-    //   ),
-    // },
-    // {
-    //   title: "Phone",
-    //   dataIndex: "phone",
-    //   render: (text, record) => <span>{record.doctorInfo.phone}</span>,
-    // },
+    {
+      title: "Phone",
+      dataIndex: "doctorInfo.phone",
+    },
     {
       title: "Date & Time",
       dataIndex: "date",
-      render: (text, record) => (
+      render: (date, record) => (
         <span>
-          {moment(record.date).format("DD-MM-YYYY")} &nbsp;
+          {moment(date).format("DD-MM-YYYY")} &nbsp;
           {moment(record.time).format("HH:mm")}
         </span>
       ),
     },
-    {
-      title: "Status",
-      dataIndex: "status",
-    },
+    { title: "Status", dataIndex: "status" },
   ];
 
   return (
     <Layout>
-      <h1>Appoinmtnets Lists</h1>
+      <h1>Appointments List</h1>
       <Table columns={columns} dataSource={appointments} />
     </Layout>
   );
 };
 
 export default Appointments;
+
