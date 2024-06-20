@@ -27,7 +27,7 @@ router.post("/register", registerController);
 router.post("/getUserData", authMiddleware, authController);
 
 //APply Doctor || POST
-router.post("/apply-doctor", applyDoctorController);
+router.post("/apply-doctor",authMiddleware, applyDoctorController);
 
 //Notifiaction  Doctor || POST
 // router.post(

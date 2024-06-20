@@ -94,7 +94,7 @@ const Layout = ({ children }) => {
           display: flex;
           flex-direction: column;
           min-height: 100vh;
-          background-color: #e6fffa; /* Change background color to teal 100 */
+        
         }
 
         .layout {

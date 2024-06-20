@@ -17,7 +17,7 @@ import BookingPage from "./pages/BookingPage";
 import Appointments from "./pages/Appointments";
 import DoctorAppointments from "./pages/doctor/DoctorAppointments";
 import Hero from "./components/Hero";
-import Diseases from "./components/Diseases";
+
 
 function App() {
   const { loading } = useSelector((state) => state.alerts);
@@ -37,13 +37,22 @@ function App() {
               }
             />
              <Route
-              path="/disease"
+              path="/profile"
               element={
                 <ProtectedRoute>
-                  <Diseases />
+                  <Profile />
                 </ProtectedRoute>
               }
             />
+             <Route
+              path="/appointment"
+              element={
+                <ProtectedRoute>
+                  <Appointments />
+                </ProtectedRoute>
+              }
+            />
+             
             <Route
               path="/admin/users"
               element={
