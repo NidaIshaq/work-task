@@ -5,7 +5,7 @@ const diseaseSchema = new mongoose.Schema({
   description: { type: String, required: true },
   animalType: { type: String, required: true },
   treatment:{type:String},
-  symptoms: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Symptom' }]
+  symptoms: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Symptoms' }]
 });
 
 const diseaseModel = mongoose.model('Disease', diseaseSchema);

@@ -10,7 +10,7 @@ body {
   
   .sidebar {
     width: 250px;
-    background-color: #3a0d0d;
+    background-color: #0d9488;
     color: #fff;
     display: flex;
     flex-direction: column;
@@ -20,7 +20,7 @@ body {
     padding: 20px;
     font-size: 24px;
     text-align: center;
-    background-color: #2e0a0a;
+    background-color: #01443d;
   }
   .sidebar-nav{
     margin-top: 50px;
@@ -44,7 +44,8 @@ body {
   }
   
   .sidebar-nav li a:hover {
-    background-color: #502626;
+    background-color: #4a9e9c;
+    
   }
   
   .content {

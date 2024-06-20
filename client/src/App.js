@@ -18,6 +18,7 @@ import AdminPanel from "./pages/admin/AdminPanel";
 import AddSymptoms from "./components/AddSymptoms";
 import AddDisease from "./components/AddDisease";
 import DiseaseRecognition from "./pages/user/DiseaseRecognition";
+import DiseaseDetails from "./pages/user/DiseaseDetails";
 function App() {
   const { loading } = useSelector((state) => state.alerts);
   return (
@@ -121,6 +122,8 @@ function App() {
              <Route  path="/addSymptoms"  element={<AddSymptoms />}  />
              <Route  path="/addDisease"  element={<AddDisease />}  />
              <Route  path="/diseaseRecognition"  element={<DiseaseRecognition />}  />
+             <Route  path="/diseaseDetails/:id"  element={<DiseaseDetails />}  />
+
 
 
 

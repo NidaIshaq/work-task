@@ -38,12 +38,12 @@
 /* Form styling */
 .disease-form {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
+    flex-direction: column;
+    gap: 20px;
 }
 
 .form-group {
-    flex: 1 1 45%;
+    width: 100%;
     margin-bottom: 20px;
 }
 
@@ -69,17 +69,16 @@
 }
 
 .btn-submit {
-    background-color: #007bff;
+    background-color: #01443d;
     color: white;
     padding: 10px 20px;
     border: none;
     border-radius: 4px;
     cursor: pointer;
     transition: background-color 0.2s;
-    margin: 0 auto;
-    display: block;
+    align-self: center;
 }
 
 .btn-submit:hover {
-    background-color: #0056b3;
+    background-color: #4a9e9c;
 }
