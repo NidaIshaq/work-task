@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import logoDark from "../assets/images/logo-dark.png";
 import logoLight from "../assets/images/logo-light.png";
 import { Link as ScrollLink } from "react-scroll";
-import Emergency from "./Emergency";
+// import emergency from "./Emergency";
 export default function Navbar() {
   const [scroll, setScroll] = useState(false);
   const [menu, setMenu] = useState(false);
