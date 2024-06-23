@@ -1,5 +1,6 @@
 const Disease = require('../models/diseaseModel');
 const Symptom = require('../models/symptomsModel');
+const DietPlan = require('../models/dietPlanModel')
 
 const addSymptomController = async (req, res) => {
   try {
@@ -87,4 +88,49 @@ const diseaseDetails =  async (req, res) => {
   }
 };
 
-module.exports = { addSymptomController, getAllSymptoms, addDisease, searchDiseases,diseaseDetails };
+const getAllDiseases = async (req,res) => {
+  try {
+    const diseases = await Disease.find();
+    res.json(diseases);
+} catch (err) {
+    res.status(500).json({ message: err.message });
+}
+}
+
+const addDietPlan = async (req,res) => {
+  const dietPlan = new DietPlan({
+    disease: req.body.disease,
+    dietaryGoal: req.body.dietaryGoal,
+    morningMeal: req.body.morningMeal,
+    afternoonMeal: req.body.afternoonMeal,
+    lateAfternoonMeal: req.body.lateAfternoonMeal,
+    eveningMeal: req.body.eveningMeal,
+    supplements: req.body.supplements,
+    additionalTips: req.body.additionalTips
+});
+
+try {
+    const newDietPlan = await dietPlan.save();
+    res.status(201).json(newDietPlan);
+} catch (err) {
+    res.status(400).json({ message: err.message });
+}
+}
+
+const fetchDietPlan = async (req,res) =>{
+  try {
+    const { diseaseId } = req.params;
+    const dietPlan = await DietPlan.findOne({ disease: diseaseId });
+
+    if (!dietPlan) {
+        return res.status(404).json({ success: false, message: 'Diet plan not found' });
+    }
+
+    res.status(200).json({ success: true, dietPlan });
+} catch (error) {
+    console.error('There was an error fetching the diet plan!', error);
+    res.status(500).json({ success: false, message: 'Server error' });
+}
+}
+module.exports = { addSymptomController, getAllSymptoms, addDisease, 
+                   searchDiseases,diseaseDetails , getAllDiseases, addDietPlan, fetchDietPlan};

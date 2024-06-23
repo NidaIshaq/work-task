@@ -15,7 +15,7 @@ const Sidebar = () => {
                   <ul>
                     <li><Link to={`/addDisease`}>Add Disease</Link></li>
                     <li><Link to={`/addSymptoms`}>Add Symptoms</Link></li>
-                    <li><Link to={`/addSymptoms`}>Add Diet Plans</Link></li>
+                    <li><Link to={`/addDietPlan`}>Add Diet Plan</Link></li>
                     <li><Link to={`/`}>Logout</Link></li>
                   </ul>
                 </nav>
@@ -25,5 +25,4 @@ const Sidebar = () => {
     );
   
 }
-
 export default Sidebar

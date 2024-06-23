@@ -2,14 +2,18 @@ const mongoose = require("mongoose");
 
 const doctorSchema = new mongoose.Schema(
   {
-    userId: {
-      type: String,
-    },
+    // userId: {
+    //   type: String,
+    // },
     firstName: {
       type: String,
       required: [true, "first name is required"],
     },
     lastName: {
+      type: String,
+      required: [true, "last name is required"],
+    },
+    cnic:{
       type: String,
       required: [true, "last name is required"],
     },
@@ -21,8 +25,13 @@ const doctorSchema = new mongoose.Schema(
       type: String,
       required: [true, "email is required"],
     },
-    website: {
+    clinicName: {
       type: String,
+      required: [true, "Clinic Name is required"],
+    },
+    password: {
+      type: String,
+      required: [true, "password is required"],
     },
     address: {
       type: String,
@@ -44,8 +53,12 @@ const doctorSchema = new mongoose.Schema(
       type: String,
       default: "pending",
     },
-    timings: {
-      type: Object,
+    startTime: {
+      type: String,
+      required: [true, "wrok timing is required"],
+    },
+    endTime: {
+      type: String,
       required: [true, "wrok timing is required"],
     },
   },

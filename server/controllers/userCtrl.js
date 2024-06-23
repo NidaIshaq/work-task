@@ -87,30 +87,30 @@ const applyDoctorController = async (req, res) => {
   try {
     const newDoctor = new doctorModel({ ...req.body, status: "pending" });
     await newDoctor.save();
-    const adminUser = await userModel.findOne({ isAdmin: true });
+    // const adminUser = await userModel.findOne({ isAdmin: true });
 
-    if (!adminUser) {
-      return res.status(404).send({
-        success: false,
-        message: "Admin user not found",
-      });
-    }
+    // if (!adminUser) {
+    //   return res.status(404).send({
+    //     success: false,
+    //     message: "Admin user not found",
+    //   });
+    // }
 
-    if (!adminUser.notification) {
-      adminUser.notification = [];
-    }
+    // if (!adminUser.notification) {
+    //   adminUser.notification = [];
+    // }
 
-    adminUser.notification.push({
-      type: "apply-doctor-request",
-      message: `${newDoctor.firstName} ${newDoctor.lastName} has applied for a doctor account`,
-      data: {
-        doctorId: newDoctor._id,
-        name: `${newDoctor.firstName} ${newDoctor.lastName}`,
-        onClickPath: "/admin/doctors",
-      },
-    });
+    // adminUser.notification.push({
+    //   type: "apply-doctor-request",
+    //   message: `${newDoctor.firstName} ${newDoctor.lastName} has applied for a doctor account`,
+    //   data: {
+    //     doctorId: newDoctor._id,
+    //     name: `${newDoctor.firstName} ${newDoctor.lastName}`,
+    //     onClickPath: "/admin/doctors",
+    //   },
+    // });
 
-    await userModel.findByIdAndUpdate(adminUser._id, { notification: adminUser.notification });
+    // await userModel.findByIdAndUpdate(adminUser._id, { notification: adminUser.notification });
     res.status(201).send({
       success: true,
       message: "Doctor account applied successfully",

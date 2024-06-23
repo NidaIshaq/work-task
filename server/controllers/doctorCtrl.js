@@ -109,6 +109,16 @@ const updateStatusController = async (req, res) => {
     });
   }
 };
+const registerDoctor = async (req, res) => {
+  console.log(req.body); 
+  try {
+    const doctor = new doctorModel(req.body);
+    await doctor.save();
+    res.status(201).send(doctor);
+  } catch (error) {
+    res.status(400).send(error);
+  }
+}
 
 module.exports = {
   getDoctorInfoController,
@@ -116,4 +126,5 @@ module.exports = {
   getDoctorByIdController,
   doctorAppointmentsController,
   updateStatusController,
+  registerDoctor
 };

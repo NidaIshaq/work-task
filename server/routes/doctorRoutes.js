@@ -5,6 +5,7 @@ const {
   getDoctorByIdController,
   doctorAppointmentsController,
   updateStatusController,
+  registerDoctor
 } = require("../controllers/doctorCtrl");
 const authMiddleware = require("../middlewares/authMiddleware");
 const router = express.Router();
@@ -27,5 +28,6 @@ router.get(
 
 //POST Update Status
 router.post("/update-status", authMiddleware, updateStatusController);
+router.post("/registerDoctor", registerDoctor)
 
 module.exports = router;

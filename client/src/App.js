@@ -23,6 +23,10 @@ import DiseaseRecognition from "./pages/user/DiseaseRecognition";
 import DiseaseDetails from "./pages/user/DiseaseDetails";
 import Hero from "./components/Hero";
 import Emergency from "./components/Emergency";
+import AddDietPlan from "./components/AddDietPlan";
+import DietPlanPage from "./pages/DietPlanPage";
+import RegisterDoctor from "./pages/doctor/RegisterDoctor";
+import ClinicsPage from "./pages/ClinicsPage";
 
 function App() {
   const { loading } = useSelector((state) => state.alerts);
@@ -138,14 +142,14 @@ function App() {
                 </ProtectedRoute>
               }
             />
-            {/* <Route
-              path="/"
+            <Route
+              path="/doctor"
               element={
                 <ProtectedRoute>
                   <HomePage />
                 </ProtectedRoute>
               }
-            /> */}
+            />
             <Route
               path="/"
               element={
@@ -154,14 +158,17 @@ function App() {
                 </ProtectedRoute>
               }
             />
+
             <Route path="/adminPanel" element={<AdminPanel />} />
             <Route path="/addSymptoms" element={<AddSymptoms />} />
             <Route path="/addDisease" element={<AddDisease />} />
-            <Route
-              path="/diseaseRecognition"
-              element={<DiseaseRecognition />}
-            />
+            <Route path="/diseaseRecognition"  element={<DiseaseRecognition />}/>
             <Route path="/diseaseDetails/:id" element={<DiseaseDetails />} />
+            <Route path="/addDietPlan" element={<AddDietPlan />} />
+            <Route path= "/dietPlanPage/:diseaseId" element={<DietPlanPage/>} />
+            <Route path= "/registerDoctor" element={<RegisterDoctor/>} />
+            <Route path= "/clinicsPage" element={<ClinicsPage/>} />
+
           </Routes>
         )}
       </BrowserRouter>

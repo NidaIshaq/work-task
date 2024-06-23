@@ -45,11 +45,12 @@ const ApplyDoctor = () => {
     }
   };
   return (
-    <Layout>
-      <div >
-      <h1 className="text-center">Apply Doctor</h1>
+    // <Layout>
+      <div style={{margin:'130px 70px', padding:'20px', border:'2px solid grey', borderRadius:'2%'}} >
+      <h1 className="text-center" style={{fontSize:'20px', fontWeight:'bold'}}>Apply As a Doctor</h1>
       <Form layout="vertical" onFinish={handleFinish} className="m-3">
-        <h4 className="">Personal Details : </h4>
+        <h4 style={{fontSize:'15px', fontWeight:'bold'}}>Personal Details : </h4>
+        <br/>
         <Row gutter={20}>
           <Col xs={24} md={24} lg={8}>
             <Form.Item
@@ -81,6 +82,16 @@ const ApplyDoctor = () => {
               <Input type="text" placeholder="your contact no" />
             </Form.Item>
           </Col>
+          {/* <Col xs={24} md={24} lg={8}>
+            <Form.Item
+              label="CNIC"
+              name="cnic"
+              required
+              rules={[{ required: true }]}
+            >
+              <Input type="text" placeholder="your cnic" />
+            </Form.Item>
+          </Col> */}
           <Col xs={24} md={24} lg={8}>
             <Form.Item
               label="Email"
@@ -107,8 +118,13 @@ const ApplyDoctor = () => {
             </Form.Item>
           </Col>
         </Row>
-        <h4>Professional Details :</h4>
+     
+          <br/>
+       
+        <h4 style={{fontSize:'15px', fontWeight:'bold'}}>Professional Details :</h4>
+        <br/>
         <Row gutter={20}>
+       
           <Col xs={24} md={24} lg={8}>
             <Form.Item
               label="Specialization"
@@ -145,6 +161,19 @@ const ApplyDoctor = () => {
             </Form.Item>
           </Col>
           <Col xs={24} md={24} lg={8}></Col>
+          {/* <Col xs={24} md={24} lg={8}>
+            <Form.Item
+              label="Password"
+              name="password"
+              required
+              rules={[{ required: true }]}
+            >
+              <Input type="password" placeholder="Set your password" />
+            </Form.Item>
+          </Col> */}
+          <Col xs={24} md={24} lg={8}>
+            
+          </Col>
           <Col xs={24} md={24} lg={8}>
             <button className="btn btn-primary form-btn" type="submit">
               Submit
@@ -152,7 +181,7 @@ const ApplyDoctor = () => {
           </Col>
         </Row>
       </Form></div>
-    </Layout>
+    // </Layout>
   );
 };
 
