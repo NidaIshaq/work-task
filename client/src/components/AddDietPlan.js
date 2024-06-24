@@ -81,7 +81,7 @@ const AddDietPlan = () => {
                     <span className="notification-icon">🔔</span>
                 </header>
                 <main className="main-content">
-                    <h1 className="main-heading">Add Diet Plan</h1>
+                    {/* <h1 className="main-heading">Add Diet Plan</h1> */}
                     <form className="disease-form" onSubmit={handleSubmit}>
                         <div className="form-group">
                             <label htmlFor="disease">Disease Name</label>

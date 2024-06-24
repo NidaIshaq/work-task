@@ -9,31 +9,32 @@ function ClinicsPage() {
   useEffect(() => {
     const fetchDoctors = async () => {
       try {
-        const { data } = await axios.get("/api/v1/admin/getAllDoctors", {
-          withCredentials: true,
-        });
-        setDoctors(data.response || []); // Assuming the response contains an array of doctors
+        const response = await axios.get('/api/v1/doctor/getAllDoctors');
+        console.log("getAllDoctors working...");
+        setDoctors(response.data);
       } catch (error) {
         console.error("Error fetching doctors:", error);
-        // Handle errors properly
       }
     };
+
     fetchDoctors();
   }, []);
 
-  // Filter doctors based on search criteria
-  const filteredDoctors = doctors.filter((doctor) => {
-    return (
-      doctor.firstName.toLowerCase().includes(searchName.toLowerCase()) &&
-      doctor.address.toLowerCase().includes(searchLocation.toLowerCase())
-    );
-  });
+  const filteredDoctors = Array.isArray(doctors) ? doctors.filter((doctor) => {
+    const firstName = doctor.firstName || '';
+    const lastName = doctor.lastName || '';
+    const clinicName = doctor.clinicName || '';
+    const address = doctor.address || '';
+
+    const nameMatch = `${firstName} ${lastName}`.toLowerCase().includes(searchName.toLowerCase()) ||
+                      clinicName.toLowerCase().includes(searchName.toLowerCase());
+    const locationMatch = address.toLowerCase().includes(searchLocation.toLowerCase());
+    return nameMatch && locationMatch;
+  }) : [];
 
   return (
     <div className="h-full w-full bg-teal-200 p-6">
-      <h1 className="text-4xl font-bold text-center mb-4">
-        Veterinary Clinics
-      </h1>
+      <h1 className="text-4xl font-bold text-center mb-4">Veterinary Clinics</h1>
       <h2 className="text-xl text-center mb-6">
         Welcome to our Veterinary Clinics. We provide comprehensive care for
         your pets with a team of dedicated professionals.
@@ -42,7 +43,7 @@ function ClinicsPage() {
       <div className="flex justify-center mb-6">
         <input
           type="text"
-          placeholder="Search by Name"
+          placeholder="Search by Name or Clinic"
           className="px-4 py-2 border border-gray-300 rounded-md mr-4"
           value={searchName}
           onChange={(e) => setSearchName(e.target.value)}
@@ -63,17 +64,18 @@ function ClinicsPage() {
             filteredDoctors.map((doctor) => (
               <li key={doctor._id} className="mb-4">
                 <div className="p-4 border-b border-gray-200">
-                  <p className="text-lg font-medium">
+                  <p className="text-lg font-large">
                     {doctor.firstName} {doctor.lastName}
                   </p>
+                  <p>Clinic Name: {doctor.clinicName}</p>
                   <p>Location: {doctor.address}</p>
                   <p>Specialty: {doctor.specialization}</p>
                   <p>Phone: {doctor.phone}</p>
-                  <p>Email: {doctor.email}</p>
-                  <p>Website: {doctor.website}</p>
-                  <p>Experience: {doctor.experience}</p>
                   <p>Fees: {doctor.feesPerCunsaltation}</p>
-                  <p>Timings: {doctor.timings}</p>
+                  <p>Timings: {doctor.startTime} - {doctor.endTime}</p>
+                  <button className="mt-2 px-4 py-2 bg-blue-500 text-white rounded-md">
+                    Schedule an Appointment
+                  </button>
                 </div>
               </li>
             ))
