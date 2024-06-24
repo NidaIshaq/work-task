@@ -120,11 +120,22 @@ const registerDoctor = async (req, res) => {
   }
 }
 
+const getAllDoctors = async (req, res) => {
+  try {
+    const doctors = await doctorModel.find();
+    res.json(doctors); 
+  } catch (err) {
+    console.log('Error fetching doctors:', err);
+    res.status(500).json({ message: "Error fetching doctors" });
+  }
+};
+
 module.exports = {
   getDoctorInfoController,
   updateProfileController,
   getDoctorByIdController,
   doctorAppointmentsController,
   updateStatusController,
-  registerDoctor
+  registerDoctor,
+ getAllDoctors
 };
