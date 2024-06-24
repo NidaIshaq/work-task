@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 import "../../styles/DiseaseDetails.css"; // Create and import your CSS file
 
 const DiseaseDetails = () => {
   const { id } = useParams();
   const [disease, setDisease] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchDiseaseDetails = async () => {
@@ -54,8 +56,8 @@ const DiseaseDetails = () => {
             <p>For the best care of your pet, it's important to follow the recommended diet plan and consult a veterinarian if symptoms persist.</p>
           </div>
           <div className="button-row">
-            <button className="btn">Diet Plan</button>
-            <button className="btn">Schedule Appointment</button>
+            <button className="btn" onClick={() => navigate(`/dietPlanPage/${id}`)}>Diet Plan</button>
+            <button className="btn" onClick={() => navigate(`/clinicsPage`)}>Schedule Appointment</button>
           </div>
         </div>
         <div className="disease-image">

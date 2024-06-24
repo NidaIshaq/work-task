@@ -1,0 +1,103 @@
+/* DietPlanPage.css */
+
+.diet-plan-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 60px 0;
+    padding: 20px;
+    min-height: 100vh;
+    
+}
+
+.diet-plan-card {
+    background-color: #53f8c7;
+    border-radius: 10px;
+    color: black;
+    width: 90%;
+    max-width: 900px;
+    padding: 20px;
+    text-align: left;
+    position: relative;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 20px;
+}
+
+.image-placeholder {
+    background-color: white;
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    margin: 0 auto;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: -120px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.image-placeholder img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.heading {
+    margin-top: 80px;
+    font-size: 20px;
+    color:black;
+    /* color: rgb(1, 48, 48); */
+    font-weight: bold;
+}
+
+p {
+    margin: 10px 0;
+    font-size: 18px;
+}
+
+@media (max-width: 768px) {
+    .diet-plan-card {
+        padding: 15px;
+    }
+
+    .heading {
+        font-size: 18px;
+    }
+
+    p {
+        font-size: 16px;
+    }
+
+    .image-placeholder {
+        width: 100px;
+        height: 100px;
+        top: -50px;
+    }
+}
+
+@media (max-width: 480px) {
+    .diet-plan-page {
+        padding: 10px;
+    }
+
+    .diet-plan-card {
+        padding: 10px;
+    }
+
+    .heading {
+        font-size: 16px;
+    }
+
+    p {
+        font-size: 14px;
+    }
+
+    .image-placeholder {
+        width: 80px;
+        height: 80px;
+        top: -40px;
+    }
+}
