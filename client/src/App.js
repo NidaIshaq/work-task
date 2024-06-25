@@ -28,6 +28,7 @@ import DietPlanPage from "./pages/DietPlanPage";
 import RegisterDoctor from "./pages/doctor/RegisterDoctor";
 import ClinicsPage from "./pages/ClinicsPage";
 import ApplyAppointment from "./pages/user/ApplyAppointment";
+import EmergencyAppointment from "./pages/user/EmergencyAppointment";
 
 function App() {
   const { loading } = useSelector((state) => state.alerts);
@@ -171,6 +172,8 @@ function App() {
             <Route path= "/registerDoctor" element={<RegisterDoctor/>} />
             <Route path= "/clinicsPage" element={<ClinicsPage/>} />
             <Route path= "/applyAppointment/:doctorId" element={<ApplyAppointment/>} />
+            <Route path= "/emergencyAppointment" element={<EmergencyAppointment/>} />
+
 
 
           </Routes>

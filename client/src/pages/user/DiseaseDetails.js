@@ -88,7 +88,7 @@ const DiseaseDetails = () => {
               </button>
             </div>
           </div>
-
+          
           {/* Image Section */}
           <div className="lg:w-1/3 mt-4 lg:mt-0">
             <img

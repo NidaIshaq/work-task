@@ -9,7 +9,8 @@ const {
   bookeAppointmnetController,
   bookingAvailabilityController,
   userAppointmentsController,
-  applyAppointment
+  applyAppointment,
+  emergencyAppointment
 } = require("../controllers/userCtrl");
 const authMiddleware = require("../middlewares/authMiddleware");
 
@@ -58,5 +59,7 @@ router.post(
 //Appointments List
 router.get("/user-appointments", authMiddleware, userAppointmentsController);
 router.post("/applyAppointment", authMiddleware,applyAppointment)
+router.post("/emergencyAppointment", authMiddleware,emergencyAppointment)
+
 
 module.exports = router;

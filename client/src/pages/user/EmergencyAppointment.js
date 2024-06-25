@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
-function ClinicsPage() {
+function EmergencyAppointment() {
+  
   const [doctors, setDoctors] = useState([]);
   const [searchName, setSearchName] = useState("");
   const [searchLocation, setSearchLocation] = useState("");
@@ -40,6 +41,24 @@ function ClinicsPage() {
       })
     : [];
 
+  const handleEmergencyAppointment = async (doctorId) => {
+    try {
+      const token = localStorage.getItem('token');  // Assuming you store the JWT token in localStorage
+      const response = await axios.post('/api/v1/user/emergencyAppointment', {
+        doctorId,
+      }, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      console.log('Appointment created:', response.data);
+      alert('You appointmentrequest is sent to the doctor, you will get a response soon')
+    } catch (error) {
+      console.error('Error creating appointment:', error);
+      
+    }
+  };
+
   return (
     <div className="h-full w-full bg-teal-100 p-6">
       <header className="bg-teal-500 text-white w-full py-4 text-center mt-0">
@@ -54,14 +73,14 @@ function ClinicsPage() {
         <input
           type="text"
           placeholder="Search by Name or Clinic"
-          className="px-4 py-2 border border-gray-300 rounded-md shadow focus:ring-1 focus:ring-none"
+          className="px-4 py-2 border border-gray-300 rounded-md shadow focus:ring-2 focus:ring-teal-500"
           value={searchName}
           onChange={(e) => setSearchName(e.target.value)}
         />
         <input
           type="text"
           placeholder="Search by Location"
-          className="px-4 py-2 border border-gray-300 rounded-md shadow focus:ring-1 focus:ring-none"
+          className="px-4 py-2 border border-gray-300 rounded-md shadow focus:ring-2 focus:ring-teal-500"
           value={searchLocation}
           onChange={(e) => setSearchLocation(e.target.value)}
         />
@@ -71,7 +90,7 @@ function ClinicsPage() {
         <h3 className="text-2xl font-semibold mb-4 text-center">
           Registered Doctors
         </h3>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {filteredDoctors.length > 0 ? (
             filteredDoctors.map((doctor) => (
               <div
@@ -79,10 +98,10 @@ function ClinicsPage() {
                 className="bg-teal-200 p-4 rounded-lg shadow-lg"
               >
                 <div className="pb-4">
-                  <p className="text-lg font-semibold font-large">
+                  <p className="text-lg font-semibold">
                     {doctor.firstName} {doctor.lastName}
                   </p>
-                  <p className=" text-lg">Clinic Name: {doctor.clinicName}</p>
+                  <p className="text-lg">Clinic: {doctor.clinicName}</p>
                   <p className="text-lg">Location: {doctor.address}</p>
                   <p className="text-lg">Specialty: {doctor.specialization}</p>
                   <p className="text-lg">Phone: {doctor.phone}</p>
@@ -90,16 +109,19 @@ function ClinicsPage() {
                   <p className="text-lg">
                     Timings: {doctor.startTime} - {doctor.endTime}
                   </p>
-                  <Link to={`/applyAppointment/${doctor._id}`}>
-                    <button  className="h-8 px-4 tracking-wide inline-flex items-center justify-center shadow-lg font-medium rounded-md bg-teal-500 text-white hover:bg-teal-600 cursor-pointer">
-                      Schedule an Appointment
-                    </button>
-                  </Link>
+                 
+                  <button
+                    onClick={() => handleEmergencyAppointment(doctor._id)}
+                    className="h-8 px-4 tracking-wide inline-flex items-center justify-center shadow-lg font-medium rounded-md bg-red-500 text-white hover:bg-teal-600 cursor-pointer"
+                  >
+                    Emergency Appointment
+                  </button>
+                 
                 </div>
               </div>
             ))
           ) : (
-            <p>No doctors found.</p>
+            <p className="text-lg">No doctors found.</p>
           )}
         </div>
       </div>
@@ -107,4 +129,4 @@ function ClinicsPage() {
   );
 }
 
-export default ClinicsPage;
+export default EmergencyAppointment;
