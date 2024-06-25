@@ -1,4 +1,5 @@
-const express = require("express");
+const newLocal = require("express");
+const express = newLocal;
 const {
   getDoctorInfoController,
   updateProfileController,
