@@ -40,11 +40,12 @@ const RegisterDoctor = () => {
   };
 
   return (
-    <div className=" bg-teal-500/5 min-h-screen flex flex-col items-center justify-center">
-      <h2 className="bg-teal-500 text-white w-full py-4 text-center">
-        Apply As a Doctor
-      </h2>
-      <div className="bg-white p-8 rounded-lg shadow-lg  mb-5 w-full max-w-5xl grid grid-cols-1 lg:grid-cols-2 gap-8">
+    <div className="h-full w-full bg-teal-100 p-6">
+      <header className="bg-teal-500 text-white w-full py-4 text-center mt-0">
+        <h1 className="text-4xl font-bold">Apply as Doctor</h1>
+      </header>
+      <div className="flex justify-center">
+      <div className="bg-white p-8 rounded-lg shadow-lg mt-4 mb-5 w-full max-w-7xl grid grid-cols-1 lg:grid-cols-2 gap-8">
         <div className="order-2 lg:order-1">
           <form onSubmit={handleSubmit} className="w-full">
             <div className="mb-10 w-full ">
@@ -296,11 +297,11 @@ const RegisterDoctor = () => {
         </div>
         <div className="order-1 lg:order-2 flex items-ceter mt-6">
           <img
-            src="\vet-doc.png"
+            src="\vet-doc-removebg-preview.png"
             alt="Doctor"
             className="rounded-lg shadow-lg w-full h-70 object-cover"
           />
-        </div>
+        </div></div>
       </div>
     </div>
   );

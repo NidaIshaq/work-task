@@ -54,14 +54,14 @@ function ClinicsPage() {
         <input
           type="text"
           placeholder="Search by Name or Clinic"
-          className="px-4 py-2 border border-gray-300 rounded-md shadow focus:ring-2 focus:ring-teal-500"
+          className="px-4 py-2 border border-gray-300 rounded-md shadow focus:ring-1 focus:ring-none"
           value={searchName}
           onChange={(e) => setSearchName(e.target.value)}
         />
         <input
           type="text"
           placeholder="Search by Location"
-          className="px-4 py-2 border border-gray-300 rounded-md shadow focus:ring-2 focus:ring-teal-500"
+          className="px-4 py-2 border border-gray-300 rounded-md shadow focus:ring-1 focus:ring-none"
           value={searchLocation}
           onChange={(e) => setSearchLocation(e.target.value)}
         />
@@ -71,38 +71,37 @@ function ClinicsPage() {
         <h3 className="text-2xl font-semibold mb-4 text-center">
           Registered Doctors
         </h3>
-        <ul className="flex flex-col items-center">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {filteredDoctors.length > 0 ? (
             filteredDoctors.map((doctor) => (
-              <li
+              <div
                 key={doctor._id}
-                className="mb-4 bg-teal-200 p-4 rounded-lg shadow-lg w-full max-w-md"
+                className="bg-teal-200 p-4 rounded-lg shadow-lg"
               >
                 <div className="pb-4">
-                  <p className="text-lg font-large">
+                  <p className="text-lg font-semibold font-large">
                     {doctor.firstName} {doctor.lastName}
                   </p>
-                  <p>Clinic Name: {doctor.clinicName}</p>
-                  <p>Location: {doctor.address}</p>
-                  <p>Specialty: {doctor.specialization}</p>
-                  <p>Phone: {doctor.phone}</p>
-                  <p>Fees: {doctor.feesPerCunsaltation}</p>
-                  <p>
+                  <p className=" text-lg">Clinic Name: {doctor.clinicName}</p>
+                  <p className="text-lg">Location: {doctor.address}</p>
+                  <p className="text-lg">Specialty: {doctor.specialization}</p>
+                  <p className="text-lg">Phone: {doctor.phone}</p>
+                  <p className="text-lg">Fees: {doctor.feesPerCunsaltation}</p>
+                  <p className="text-lg">
                     Timings: {doctor.startTime} - {doctor.endTime}
                   </p>
                   <Link to={`/applyAppointment/${doctor._id}`}>
-                    <button className="mt-2 px-4 py-2 bg-blue-500 text-white rounded-md">
+                    <button  className="h-8 px-4 tracking-wide inline-flex items-center justify-center shadow-lg font-medium rounded-md bg-teal-500 text-white hover:bg-teal-600 cursor-pointer">
                       Schedule an Appointment
                     </button>
-                             
                   </Link>
                 </div>
-              </li>
+              </div>
             ))
           ) : (
             <p>No doctors found.</p>
           )}
-        </ul>
+        </div>
       </div>
     </div>
   );
