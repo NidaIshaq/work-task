@@ -29,6 +29,7 @@ import RegisterDoctor from "./pages/doctor/RegisterDoctor";
 import ClinicsPage from "./pages/ClinicsPage";
 import ApplyAppointment from "./pages/user/ApplyAppointment";
 import EmergencyAppointment from "./pages/user/EmergencyAppointment";
+import CommunityForum from "./pages/user/CommunityForum";
 
 function App() {
   const { loading } = useSelector((state) => state.alerts);
@@ -109,7 +110,8 @@ function App() {
               element={
                 <PublicRoute>
                   <Login />
-                </PublicRoute>
+                  </PublicRoute>
+
               }
             />
             <Route
@@ -173,7 +175,7 @@ function App() {
             <Route path= "/clinicsPage" element={<ClinicsPage/>} />
             <Route path= "/applyAppointment/:doctorId" element={<ApplywqAppointment/>} />
             <Route path= "/emergencyAppointment" element={<EmergencyAppointment/>} />
-
+            <Route path= "/communityForum" element={<CommunityForum/>} />
 
 
           </Routes>

@@ -33,7 +33,7 @@ const ApplyAppointment = () => {
         time,
         doctorId
       }, {
-        headers: { Authorization: `Bearer ${token}` },
+        headers: { Authorization: `Bearer ${token}`},
       });
 
       console.log('Appointment created successfully:', res.data);

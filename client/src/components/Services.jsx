@@ -50,10 +50,10 @@ const Services = () => {
           />
           <div className="mt-8">
             <Link
-              to="/diseaseRecognition"
+              to="/communityForum"
               className="h-8 px-4 tracking-wide inline-flex items-center justify-center shadow-lg font-medium rounded-md bg-teal-500 text-black hover:bg-teal-600 cursor-pointer"
             >
-              Diet Plan
+              Community Forum
               <i className="mdi mdi-chevron-right ms-1"></i>
             </Link>
           </div>
