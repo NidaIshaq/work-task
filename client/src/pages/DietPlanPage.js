@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import axios from 'axios';
-import "../styles/DietPlanPage.css";
+import axios from "axios";
 
 const DietPlanPage = () => {
   const { diseaseId } = useParams();
@@ -25,22 +24,69 @@ const DietPlanPage = () => {
   }, [diseaseId]);
 
   if (!dietPlan) {
-    return <p>Loading...</p>;
+    return <p className="text-center mt-8 text-lg font-semibold">Loading...</p>;
   }
 
   return (
-    <div className="diet-plan-page">
-      <div className="diet-plan-card">
-        <div className="image-placeholder">
-          <img src="/petFood2.png" alt="Diet Plan" /> 
+    <div className="min-h-screen bg-teal-100 flex flex-col items-center justify-center">
+      {/* Header Section */}
+      <div className="bg-teal-500 text-white w-full py-4 text-center">
+        <h1 className="text-4xl font-bold">Diet Plan</h1>
+      </div>
+
+      {/* Main Content Wrapper */}
+      <div className="max-w-4xl mx-auto rounded-lg overflow-hidden md:flex mt-5 w-full">
+
+        {/* Data Section */}
+        <div className="md:w-2/3 p-6 bg-teal-100">
+          {/* Dietary Goal Section */}
+          <div className="mb-6 rounded-lg overflow-hidden shadow-lg bg-white">
+            <p className="text-lg font-semibold bg-teal-500 text-white py-2 px-4 rounded-full mx-auto mb-4">Dietary Goal:</p>
+            <p className="px-4 py-2">{dietPlan.dietaryGoal}</p>
+          </div>
+          {/* Morning Meal Section */}
+          <div className="mb-6 rounded-lg overflow-hidden shadow-lg bg-white">
+            <p className="text-lg font-semibold bg-teal-500 text-white py-2 px-4 rounded-full mx-auto mb-4">Morning Meal:</p>
+            <p className="px-4 py-2">{dietPlan.morningMeal}</p>
+          </div>
+          {/* Afternoon Meal Section */}
+          <div className="mb-6 rounded-lg overflow-hidden shadow-lg bg-white">
+            <p className="text-lg font-semibold bg-teal-500 text-white py-2 px-4 rounded-full mx-auto mb-4">Afternoon Meal:</p>
+            <p className="px-4 py-2">{dietPlan.afternoonMeal}</p>
+          </div>
+          {/* Late Afternoon Meal Section */}
+          <div className="mb-6 rounded-lg overflow-hidden shadow-lg bg-white">
+            <p className="text-lg font-semibold bg-teal-500 text-white py-2 px-4 rounded-full mx-auto mb-4">Late Afternoon Meal:</p>
+            <p className="px-4 py-2">{dietPlan.lateAfternoonMeal}</p>
+          </div>
+          {/* Evening Meal Section */}
+          <div className="mb-6 rounded-lg overflow-hidden shadow-lg bg-white">
+            <p className="text-lg font-semibold bg-teal-500 text-white py-2 px-4 rounded-full mx-auto mb-4">Evening Meal:</p>
+            <p className="px-4 py-2">{dietPlan.eveningMeal}</p>
+          </div>
+          {/* Supplements Section */}
+          <div className="mb-6 rounded-lg overflow-hidden shadow-lg bg-white">
+            <p className="text-lg font-semibold bg-teal-500 text-white py-2 px-4 rounded-full mx-auto mb-4">Supplements:</p>
+            <p className="px-4 py-2">{dietPlan.supplements}</p>
+          </div>
+          {/* Additional Tips Section */}
+          <div className="mb-6 rounded-lg overflow-hidden shadow-lg bg-white">
+            <p className="text-lg font-semibold bg-teal-500 text-white py-2 px-4 rounded-full mx-auto mb-4">Additional Tips:</p>
+            <p className="px-4 py-2">{dietPlan.additionalTips}</p>
+          </div>
         </div>
-        <p><span className="heading">Dietary Goal:</span>{dietPlan.dietaryGoal}</p>
-        <p><span className="heading">Morning Meal:</span> {dietPlan.morningMeal}</p>
-        <p><span className="heading">Afternoon Meal:</span> {dietPlan.afternoonMeal}</p>
-        <p><span className="heading">Late Afternoon Meal:</span> {dietPlan.lateAfternoonMeal}</p>
-        <p><span className="heading">Evening Meal:</span> {dietPlan.eveningMeal}</p>
-        <p><span className="heading">Supplements:</span> {dietPlan.supplements}</p>
-        <p><span className="heading">Additional Tips:</span> {dietPlan.additionalTips}</p>
+
+        {/* Image Section */}
+       
+        <div className="md:w-1/2 bg-teal-100 mt-28">
+          <img
+            src="/petFood2.png"
+            alt="Diet Plan"
+            className="w-full h-auto"
+            style={{ maxHeight: "400px" }}
+          />
+        </div>
+
       </div>
     </div>
   );
