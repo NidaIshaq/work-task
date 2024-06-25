@@ -81,14 +81,14 @@ const DiseaseDetails = () => {
                 Diet Plan
               </button>
               <button
-                onClick={() => navigate('/clinicsPage')}
+                onClick={() => navigate(`/clinicsPage`)}
                 className="btn bg-teal-500 text-white px-4 py-2 rounded-md shadow-md hover:bg-teal-600 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-opacity-50"
               >
                 Schedule Appointment
               </button>
             </div>
           </div>
-
+          
           {/* Image Section */}
           <div className="lg:w-1/3 mt-4 lg:mt-0">
             <img

@@ -50,7 +50,7 @@ export default function Navbar() {
           <ul className="list-none menu-social mb-0">
             <li className="inline">
               <Link
-                to="/emergency"
+                to="/emergencyAppointment"
                 className="h-8 px-4 text-[12px] tracking-wider inline-flex items-center justify-center font-medium rounded-md bg-red-600 text-white uppercase"
               >
                 Emergency
@@ -114,6 +114,7 @@ export default function Navbar() {
                 Services
               </ScrollLink>
             </li>
+           
             <li className="nav-item ms-0">
               <ScrollLink
                 className="nav-link"
