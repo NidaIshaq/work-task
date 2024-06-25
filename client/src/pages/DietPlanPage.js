@@ -35,58 +35,55 @@ const DietPlanPage = () => {
       </div>
 
       {/* Main Content Wrapper */}
-      <div className="max-w-4xl mx-auto rounded-lg overflow-hidden md:flex mt-5 w-full">
-
+      <div className="max-w-6xl mx-auto rounded-lg overflow-hidden md:flex mt-5 w-full">
         {/* Data Section */}
         <div className="md:w-2/3 p-6 bg-teal-100">
           {/* Dietary Goal Section */}
           <div className="mb-6 rounded-lg overflow-hidden shadow-lg bg-white">
-            <p className="text-lg font-semibold bg-teal-500 text-white py-2 px-4 rounded-full mx-auto mb-4">Dietary Goal:</p>
+            <p className="text-lg font-semibold bg-teal-500 text-white py-2 px-4 rounded-full mx-auto mb-4 w-full">Dietary Goal:</p>
             <p className="px-4 py-2">{dietPlan.dietaryGoal}</p>
           </div>
           {/* Morning Meal Section */}
           <div className="mb-6 rounded-lg overflow-hidden shadow-lg bg-white">
-            <p className="text-lg font-semibold bg-teal-500 text-white py-2 px-4 rounded-full mx-auto mb-4">Morning Meal:</p>
+            <p className="text-lg font-semibold bg-teal-500 text-white py-2 px-4 rounded-full mx-auto mb-4 w-full">Morning Meal:</p>
             <p className="px-4 py-2">{dietPlan.morningMeal}</p>
           </div>
           {/* Afternoon Meal Section */}
           <div className="mb-6 rounded-lg overflow-hidden shadow-lg bg-white">
-            <p className="text-lg font-semibold bg-teal-500 text-white py-2 px-4 rounded-full mx-auto mb-4">Afternoon Meal:</p>
+            <p className="text-lg font-semibold bg-teal-500 text-white py-2 px-4 rounded-full mx-auto mb-4 w-full">Afternoon Meal:</p>
             <p className="px-4 py-2">{dietPlan.afternoonMeal}</p>
           </div>
           {/* Late Afternoon Meal Section */}
           <div className="mb-6 rounded-lg overflow-hidden shadow-lg bg-white">
-            <p className="text-lg font-semibold bg-teal-500 text-white py-2 px-4 rounded-full mx-auto mb-4">Late Afternoon Meal:</p>
+            <p className="text-lg font-semibold bg-teal-500 text-white py-2 px-4 rounded-full mx-auto mb-4 w-full">Late Afternoon Meal:</p>
             <p className="px-4 py-2">{dietPlan.lateAfternoonMeal}</p>
           </div>
           {/* Evening Meal Section */}
           <div className="mb-6 rounded-lg overflow-hidden shadow-lg bg-white">
-            <p className="text-lg font-semibold bg-teal-500 text-white py-2 px-4 rounded-full mx-auto mb-4">Evening Meal:</p>
+            <p className="text-lg font-semibold bg-teal-500 text-white py-2 px-4 rounded-full mx-auto mb-4 w-full">Evening Meal:</p>
             <p className="px-4 py-2">{dietPlan.eveningMeal}</p>
           </div>
           {/* Supplements Section */}
           <div className="mb-6 rounded-lg overflow-hidden shadow-lg bg-white">
-            <p className="text-lg font-semibold bg-teal-500 text-white py-2 px-4 rounded-full mx-auto mb-4">Supplements:</p>
+            <p className="text-lg font-semibold bg-teal-500 text-white py-2 px-4 rounded-full mx-auto mb-4 w-full">Supplements:</p>
             <p className="px-4 py-2">{dietPlan.supplements}</p>
           </div>
           {/* Additional Tips Section */}
           <div className="mb-6 rounded-lg overflow-hidden shadow-lg bg-white">
-            <p className="text-lg font-semibold bg-teal-500 text-white py-2 px-4 rounded-full mx-auto mb-4">Additional Tips:</p>
+            <p className="text-lg font-semibold bg-teal-500 text-white py-2 px-4 rounded-full mx-auto mb-4 w-full">Additional Tips:</p>
             <p className="px-4 py-2">{dietPlan.additionalTips}</p>
           </div>
         </div>
 
         {/* Image Section */}
-       
         <div className="md:w-1/2 bg-teal-100 mt-28">
           <img
             src="/petFood2.png"
             alt="Diet Plan"
-            className="w-full h-auto"
+            className="w-full h-auto max-w-md"
             style={{ maxHeight: "400px" }}
           />
         </div>
-
       </div>
     </div>
   );
