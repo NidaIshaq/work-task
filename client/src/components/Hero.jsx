@@ -51,6 +51,15 @@ function Hero() {
                   <i className="mdi mdi-chevron-right ms-1"></i>
                 </Link>
               </div>
+               <div className="mt-6">
+                <Link
+                  to="/clinicsPage"
+                  className="h-10 px-6 tracking-wide inline-flex items-center justify-center font-medium rounded-md bg-teal-500 text-white"
+                >
+                  Book Appointment with vet{" "}
+                  <i className="mdi mdi-chevron-right ms-1"></i>
+                </Link>
+              </div>
             </div>
 
             <div className="lg:ms-8">

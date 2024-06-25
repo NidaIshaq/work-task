@@ -21,10 +21,10 @@ export default function Navbar() {
 
   return (
     <nav
-      className={`navbar ${scroll ? "is-sticky" : ""} sticky top-0 bg-white `}
+      className={`navbar ${
+        scroll ? "is-sticky" : ""
+      } fixed top-0 w-full bg-white shadow-lg z-50`}
       id="navbar"
-      bg-teal-500
-     style={{backgroundColor:"white"}}
     >
       <div className="container relative flex flex-wrap items-center justify-between ">
         <Link className="navbar-brand md:me-8" to="/">

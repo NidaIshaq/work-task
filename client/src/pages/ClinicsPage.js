@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { Link } from 'react-router-dom'
 
 function ClinicsPage() {
   const [doctors, setDoctors] = useState([]);
@@ -73,9 +74,11 @@ function ClinicsPage() {
                   <p>Phone: {doctor.phone}</p>
                   <p>Fees: {doctor.feesPerCunsaltation}</p>
                   <p>Timings: {doctor.startTime} - {doctor.endTime}</p>
-                  <button className="mt-2 px-4 py-2 bg-blue-500 text-white rounded-md">
-                    Schedule an Appointment
-                  </button>
+                  <Link to={`/applyAppointment/${doctor._id}`}>
+                     <button className="mt-2 px-4 py-2 bg-blue-500 text-white rounded-md">
+                      Schedule an Appointment
+                     </button>
+                  </Link>
                 </div>
               </li>
             ))
