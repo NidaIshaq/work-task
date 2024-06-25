@@ -33,7 +33,7 @@ const Services = () => {
           />
           <div className="mt-20 mb-1">
             <Link
-              to="/diseaseRecognition"
+              to="/clinicsPage"
               className="h-8 px-4 tracking-wide inline-flex items-center justify-center shadow-lg font-medium rounded-md bg-teal-500 text-black hover:bg-teal-600 cursor-pointer"
             >
               Book an appointment

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 function ClinicsPage() {
   const [doctors, setDoctors] = useState([]);
@@ -9,7 +10,7 @@ function ClinicsPage() {
   useEffect(() => {
     const fetchDoctors = async () => {
       try {
-        const response = await axios.get('/api/v1/doctor/getAllDoctors');
+        const response = await axios.get("/api/v1/doctor/getAllDoctors");
         console.log("getAllDoctors working...");
         setDoctors(response.data);
       } catch (error) {
@@ -20,17 +21,24 @@ function ClinicsPage() {
     fetchDoctors();
   }, []);
 
-  const filteredDoctors = Array.isArray(doctors) ? doctors.filter((doctor) => {
-    const firstName = doctor.firstName || '';
-    const lastName = doctor.lastName || '';
-    const clinicName = doctor.clinicName || '';
-    const address = doctor.address || '';
+  const filteredDoctors = Array.isArray(doctors)
+    ? doctors.filter((doctor) => {
+        const firstName = doctor.firstName || "";
+        const lastName = doctor.lastName || "";
+        const clinicName = doctor.clinicName || "";
+        const address = doctor.address || "";
 
-    const nameMatch = `${firstName} ${lastName}`.toLowerCase().includes(searchName.toLowerCase()) ||
-                      clinicName.toLowerCase().includes(searchName.toLowerCase());
-    const locationMatch = address.toLowerCase().includes(searchLocation.toLowerCase());
-    return nameMatch && locationMatch;
-  }) : [];
+        const nameMatch =
+          `${firstName} ${lastName}`
+            .toLowerCase()
+            .includes(searchName.toLowerCase()) ||
+          clinicName.toLowerCase().includes(searchName.toLowerCase());
+        const locationMatch = address
+          .toLowerCase()
+          .includes(searchLocation.toLowerCase());
+        return nameMatch && locationMatch;
+      })
+    : [];
 
   return (
     <div className="h-full w-full bg-teal-100 p-6">
@@ -60,30 +68,34 @@ function ClinicsPage() {
       </div>
 
       <div className="bg-white p-6 rounded-lg shadow-md">
-        <h3 className="text-2xl font-semibold mb-4 text-center">Registered Doctors</h3>
+        <h3 className="text-2xl font-semibold mb-4 text-center">
+          Registered Doctors
+        </h3>
         <ul className="flex flex-col items-center">
           {filteredDoctors.length > 0 ? (
             filteredDoctors.map((doctor) => (
-              <li key={doctor._id} className="mb-4 bg-teal-200 p-4 rounded-lg shadow-lg w-full max-w-md">
+              <li
+                key={doctor._id}
+                className="mb-4 bg-teal-200 p-4 rounded-lg shadow-lg w-full max-w-md"
+              >
                 <div className="pb-4">
                   <p className="text-lg font-large">
                     {doctor.firstName} {doctor.lastName}
                   </p>
-                  <div className="flex justify-between text-sm">
-                    <p>Clinic: {doctor.clinicName}</p>
-                    <p>Location: {doctor.address}</p>
-                  </div>
-                  <div className="flex justify-between text-sm">
-                    <p>Specialty: {doctor.specialization}</p>
-                    <p>Phone: {doctor.phone}</p>
-                  </div>
-                  <div className="flex justify-between text-sm">
-                    <p>Fees: {doctor.feesPerCunsaltation}</p>
-                    <p>Timings: {doctor.startTime} - {doctor.endTime}</p>
-                  </div>
-                  <button className="mt-2 px-4 py-2 bg-teal-500 text-white rounded-md shadow hover:bg-teal-600 transition duration-300 ease-in-out transform hover:scale-105">
-                    Schedule an Appointment
-                  </button>
+                  <p>Clinic Name: {doctor.clinicName}</p>
+                  <p>Location: {doctor.address}</p>
+                  <p>Specialty: {doctor.specialization}</p>
+                  <p>Phone: {doctor.phone}</p>
+                  <p>Fees: {doctor.feesPerCunsaltation}</p>
+                  <p>
+                    Timings: {doctor.startTime} - {doctor.endTime}
+                  </p>
+                  <Link to={`/applyAppointment/${doctor._id}`}>
+                    <button className="mt-2 px-4 py-2 bg-blue-500 text-white rounded-md">
+                      Schedule an Appointment
+                    </button>
+                             
+                  </Link>
                 </div>
               </li>
             ))

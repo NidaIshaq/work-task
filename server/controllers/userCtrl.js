@@ -254,15 +254,35 @@ const userAppointmentsController = async (req, res) => {
   }
 };
 
+const applyAppointment = async (req, res) => {
+  try {
+    const { date, time, doctorId } = req.body;
+    const userId = req.body.userId;  
+    console.log('userId==', userId)
+    const newAppointment = new appointmentModel({
+      userId,
+      doctorId,
+      date,
+      time,
+    });
+
+    await newAppointment.save();
+    res.status(201).json({ message: 'Appointment created successfully', appointment: newAppointment });
+  } catch (error) {
+    console.error('Error creating appointment:', error); // Log the error
+    res.status(500).json({ message: 'Server error', error });
+  }
+};
+
 module.exports = {
   loginController,
   registerController,
   authController,
   applyDoctorController,
- 
   deleteAllNotificationController,
   getAllDocotrsController,
   bookeAppointmnetController,
   bookingAvailabilityController,
   userAppointmentsController,
+  applyAppointment
 };
