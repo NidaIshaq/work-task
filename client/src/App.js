@@ -32,6 +32,7 @@ import EmergencyAppointment from "./pages/user/EmergencyAppointment";
 import CommunityForum from "./pages/user/CommunityForum";
 import LoginDoctor from "./pages/doctor/LoginDoctor";
 import DoctorPanel from "./pages/doctor/doctorPanel";
+import AppointmentsPage from "./pages/doctor/AppointmentsPage";
 
 function App() {
   const { loading } = useSelector((state) => state.alerts || { loading: false });
@@ -177,7 +178,7 @@ function App() {
             <Route path= "/communityForum" element={<CommunityForum/>} />
             <Route path= "/loginDoctor" element={<LoginDoctor/>} /> 
             <Route path= "/doctorPanel" element={<DoctorPanel/>} />
-
+            <Route path= "/appointmentsPage" element={<AppointmentsPage/>} />
 
 
           </Routes>

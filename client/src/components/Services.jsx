@@ -42,7 +42,7 @@ const Services = () => {
           </div>
         </div>
         <div className="bg-teal-200 shadow-lg rounded-lg p-2">
-          <h1 className="font-semibold text-lg mb-2">Diet Plan</h1>
+          <h1 className="font-semibold text-lg mb-2">Community Forum</h1>
           <img
             src="/service3.png" // Ensure the path is correct
             alt="Image 3"

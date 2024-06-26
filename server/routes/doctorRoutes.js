@@ -8,7 +8,9 @@ const {
   updateStatusController,
   registerDoctor,
   getAllDoctors,
-  loginDoctor
+  loginDoctor,
+  fetchAppointments,
+  changeAppointmentStatus
 } = require("../controllers/doctorCtrl");
 const authMiddleware = require("../middlewares/authMiddleware");
 const router = express.Router();
@@ -37,5 +39,8 @@ router.post("/registerDoctor", registerDoctor);
 router.post("/registerDoctor", registerDoctor);
 router.post("/loginDoctor", loginDoctor);
 router.get("/getAllDoctors",getAllDoctors)
+router.get(`/fetchAppointments/:doctorId`,fetchAppointments)
+router.patch("/changeAppointmentStatus/:appointmentId", changeAppointmentStatus);
+
 
 module.exports = router;

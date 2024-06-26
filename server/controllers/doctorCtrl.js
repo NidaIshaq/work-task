@@ -185,6 +185,51 @@ const getAllDoctors = async (req, res) => {
   }
 };
 
+const fetchAppointments = async (req, res) => {
+  try {
+    // Fetch appointments based on doctorId from request parameters
+    const appointments = await appointmentModel.find({ doctorId: req.params.doctorId });
+
+    // For each appointment, fetch the user details and add to the appointment data
+    const appointmentsWithUserData = await Promise.all(
+      appointments.map(async (appointment) => {
+        const user = await userModel.findById(appointment.userId); // Fetch user by userId
+        return {
+          ...appointment._doc, // Spread existing appointment data
+          user, // Add complete user object
+        };
+      })
+    );
+
+    // Send successful response with the modified appointment data
+    res.status(200).json({ success: true, appointments: appointmentsWithUserData });
+  } catch (error) {
+    // Send error response if something goes wrong
+    res.status(500).json({ success: false, message: error.message });
+  }
+};
+
+const changeAppointmentStatus = async (req, res) => {
+  try {
+    const { appointmentId } = req.params;
+    const { status } = req.body;
+
+    const appointment = await appointmentModel.findByIdAndUpdate(
+      appointmentId,
+      { status },
+      { new: true }
+    );
+
+    if (!appointment) {
+      return res.status(404).json({ success: false, message: "Appointment not found" });
+    }
+
+    res.status(200).json({ success: true, appointment });
+  } catch (error) {
+    res.status(500).json({ success: false, message: error.message });
+  }
+};
+
 module.exports = {
   getDoctorInfoController,
   updateProfileController,
@@ -193,5 +238,7 @@ module.exports = {
   updateStatusController,
   registerDoctor,
  getAllDoctors,
- loginDoctor
+ loginDoctor,
+ fetchAppointments,
+ changeAppointmentStatus
 };
