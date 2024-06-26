@@ -61,8 +61,8 @@ const AddDisease = () => {
     };
     return (
         <div className="main-layout">
-            <Sidebar/>
-            <div className="content">
+              <Sidebar opt1="Add Symptoms" link1="/addSymptoms" opt2="Add Diseases" link2="/addDisease" opt3="Add Diet Plan" link3="/addDietPlan"/>
+              <div className="content">
                 <header className="top-nav">
                     <span className="user-name">RAFIA MOAZUM</span>
                     <span className="notification-icon">🔔</span>
