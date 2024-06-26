@@ -173,7 +173,7 @@ function App() {
             <Route path= "/dietPlanPage/:diseaseId" element={<DietPlanPage/>} />
             <Route path= "/registerDoctor" element={<RegisterDoctor/>} />
             <Route path= "/clinicsPage" element={<ClinicsPage/>} />
-            <Route path= "/applyAppointment/:doctorId" element={<ApplywqAppointment/>} />
+            <Route path= "/applyAppointment/:doctorId" element={<ApplyAppointment/>} />
             <Route path= "/emergencyAppointment" element={<EmergencyAppointment/>} />
             <Route path= "/communityForum" element={<CommunityForum/>} />
 

@@ -44,7 +44,7 @@ function Hero() {
             <div className="lg:ms-8">
               <div className="relative">
                 <img
-                  src="/heroPge.png"
+                  src="/front.png"
                   className="relative top-6 z-10" // Adjusted top-14 to top-6
                   alt="Hero"
                   style={{
