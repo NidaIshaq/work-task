@@ -1,38 +1,40 @@
 import React from "react";
-// import "../styles/RegisterStyles.css";
 import { Form, Input, message } from "antd";
 import { useDispatch } from "react-redux";
 import { showLoading, hideLoading } from "../redux/features/alertSlice";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { setUser } from '../redux/features/userSlice'; // Import setUser action
 
 const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  // Form submit handler
   const onFinishHandler = async (values) => {
     try {
       dispatch(showLoading());
-
+  
       // Log the values being submitted
       console.log("Form values:", values);
-
+  
       // Make a POST request to login endpoint
       const res = await axios.post("/api/v1/user/login", values);
-
+  
       // Log the response data for debugging
       console.log("Login API response:", res.data);
-
+  
       dispatch(hideLoading());
-
+  
       if (res.data.success) {
         localStorage.setItem("token", res.data.token);
         message.success("Login Successfully");
-
+  
+        // Dispatch the setUser action with user data and token
+        dispatch(setUser({ user: res.data.user, token: res.data.token }));
+  
         // Log success message
         console.log("Login successful. Redirecting...");
-
+  
         // Navigate to home page
         navigate("/");
       } else {
@@ -44,11 +46,12 @@ const Login = () => {
       dispatch(hideLoading());
       console.error("Error during login:", error);
       message.error("Something went wrong");
-
+  
       // Log the error for further investigation
       console.error(error);
     }
   };
+  
 
   return (
     <div className="form-container ">

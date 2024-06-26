@@ -1,6 +1,8 @@
 const appointmentModel = require("../models/appointmentModel");
 const doctorModel = require("../models/doctorModel");
 const userModel = require("../models/userModels");
+const JWT = require("jsonwebtoken");
+const bcrypt = require("bcryptjs");
 const getDoctorInfoController = async (req, res) => {
   try {
     const doctor = await doctorModel.findOne({ userId: req.body.userId });
@@ -110,15 +112,68 @@ const updateStatusController = async (req, res) => {
   }
 };
 const registerDoctor = async (req, res) => {
-  console.log(req.body); 
   try {
-    const doctor = new doctorModel(req.body);
+    const { password, ...otherDetails } = req.body;
+    
+    // Encrypt password
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(password, salt);
+
+    const doctor = new doctorModel({
+      ...otherDetails,
+      password: hashedPassword,
+    });
+
     await doctor.save();
-    res.status(201).send(doctor);
+
+    // Generate token
+    const token = JWT.sign(
+      { id: doctor._id, email: doctor.email },
+      process.env.JWT_SECRET,
+      { expiresIn: "1h" }
+    );
+
+    res.status(201).send({ doctor, token });
   } catch (error) {
     res.status(400).send(error);
   }
-}
+};
+
+const loginDoctor = async (req, res) => {
+  try {
+    const { email, password } = req.body;
+
+    const doctor = await doctorModel.findOne({ email });
+    if (!doctor) {
+      return res.status(400).send({
+        message: "Invalid email or password",
+        success: false,
+      });
+    }
+
+    const isMatch = await bcrypt.compare(password, doctor.password);
+    if (!isMatch) {
+      return res.status(400).send({
+        message: "Invalid email or password",
+        success: false,
+      });
+    }
+
+    // Generate token
+    const token = JWT.sign(
+      { id: doctor._id, email: doctor.email },
+      process.env.JWT_SECRET,
+      { expiresIn: "1h" }
+    );
+
+    res.status(200).send({ doctor, token });
+  } catch (error) {
+    res.status(500).send({
+      message: "Login failed",
+      success: false,
+    });
+  }
+};
 
 const getAllDoctors = async (req, res) => {
   try {
@@ -137,5 +192,6 @@ module.exports = {
   doctorAppointmentsController,
   updateStatusController,
   registerDoctor,
- getAllDoctors
+ getAllDoctors,
+ loginDoctor
 };

@@ -32,30 +32,31 @@ const registerController = async (req, res) => {
   }
 };
 
-// login callback
 const loginController = async (req, res) => {
   try {
     const user = await userModel.findOne({ email: req.body.email });
     if (!user) {
       return res
         .status(200)
-        .send({ message: "user not found", success: false });
+        .send({ message: "User not found", success: false });
     }
     const isMatch = await bcrypt.compare(req.body.password, user.password);
     if (!isMatch) {
       return res
         .status(200)
-        .send({ message: "Invlid EMail or Password", success: false });
+        .send({ message: "Invalid Email or Password", success: false });
     }
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
       expiresIn: "1d",
     });
-    res.status(200).send({ message: "Login Success", success: true, token });
+    // Include the user data in the response
+    res.status(200).send({ message: "Login Success", success: true, token, user });
   } catch (error) {
     console.log(error);
     res.status(500).send({ message: `Error in Login CTRL ${error.message}` });
   }
 };
+
 
 const authController = async (req, res) => {
   try {
@@ -298,6 +299,21 @@ const emergencyAppointment = async (req,res) =>{
   }
 }
 
+const logout = async (req,res) =>{
+  try {
+    // Clear the token on the client side
+    res.status(200).json({
+      success: true,
+      message: "User logged out successfully",
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: "Logout failed",
+    });
+  }
+}
+
 module.exports = {
   loginController,
   registerController,
@@ -309,5 +325,6 @@ module.exports = {
   bookingAvailabilityController,
   userAppointmentsController,
   applyAppointment,
-  emergencyAppointment
+  emergencyAppointment,
+  logout
 };

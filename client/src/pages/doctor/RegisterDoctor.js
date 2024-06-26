@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const RegisterDoctor = () => {
+  const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -34,6 +37,7 @@ const RegisterDoctor = () => {
       );
       console.log("Form submitted successfully:", response.data);
       alert("Doctor Registered Successfully");
+      navigate('/doctorPanel')
     } catch (error) {
       console.error("Error submitting form:", error);
     }

@@ -1,10 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { alertSlice } from "./features/alertSlice";
-import { userSlice } from "./features/userSlice";
+import userReducer from "./features/userSlice";
+import alertReducer from "./features/alertSlice";
 
 export default configureStore({
   reducer: {
-    alerts: alertSlice.reducer,
-    user: userSlice.reducer,
+    user: userReducer,
+    alert: alertReducer,
   },
 });
