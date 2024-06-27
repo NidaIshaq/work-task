@@ -6,6 +6,8 @@ const DietPlanPage = () => {
   const { diseaseId } = useParams();
   const [dietPlan, setDietPlan] = useState(null);
 
+
+
   useEffect(() => {
     const fetchDietPlan = async () => {
       try {
@@ -22,6 +24,31 @@ const DietPlanPage = () => {
 
     fetchDietPlan();
   }, [diseaseId]);
+  const handleSendReminders = async () => {
+    try {
+      const token = localStorage.getItem('token');
+      if (!token) {
+        throw new Error('Authorization token not found');
+      }
+  
+      console.log('Sending request with token:', token); 
+  
+      const response = await axios.post(`/api/scheduleMealReminders`, null, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+  
+      console.log('Response:', response); 
+  
+      if (response.data.success) {
+        alert("Meal reminders successfully scheduled!");
+      } else {
+        alert("Failed to schedule meal reminders.");
+      }
+    } catch (error) {
+      console.error("Error sending meal reminders:", error);
+      alert("Error sending meal reminders.");
+    }
+  };
 
   if (!dietPlan) {
     return <p className="text-center mt-8 text-lg font-semibold">Loading...</p>;
@@ -72,6 +99,16 @@ const DietPlanPage = () => {
           <div className="mb-6 rounded-lg overflow-hidden shadow-lg bg-white">
             <p className="text-lg font-semibold bg-teal-500 text-white py-2 px-4 rounded-full mx-auto mb-4 w-full">Additional Tips:</p>
             <p className="px-4 py-2">{dietPlan.additionalTips}</p>
+          </div>
+          
+          {/* Send Me Meal Reminders Button */}
+          <div className="flex justify-center mt-8">
+            <button
+              onClick={handleSendReminders}
+              className="bg-teal-500 text-white font-semibold py-2 px-4 rounded-full shadow-lg hover:bg-teal-600 focus:outline-none focus:ring-2 focus:ring-teal-400"
+            >
+              Send Me Meal Reminders Daily
+            </button>
           </div>
         </div>
 

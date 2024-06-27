@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const { addSymptomController,getAllSymptoms, addDisease, searchDiseases, diseaseDetails, getAllDiseases,addDietPlan, fetchDietPlan} = require('../controllers/symptomsNdiseasesCtrl');
+const authMiddleware = require('../middlewares/authMiddleware');
 
 
 // Admin Panel

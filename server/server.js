@@ -23,6 +23,7 @@ app.use("/api/v1/admin", require("./routes/adminRoutes"));
 app.use("/api/v1/doctor", require("./routes/doctorRoutes"));
 app.use("/api", require("./routes/symptoms&diseasesRoute"));
 app.use("/api", require("./routes/communityFourmRoute"));
+app.use("/api", require("./routes/mealReminderRouter"));
 
 
 
