@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import Navbar from "./Navbar";
 import About from "./About";
 import Footer from "./Footer";
-import Switcher from "../components/switcher";
+
 import Services from "./Services";
 
 function Hero() {
@@ -62,7 +62,7 @@ function Hero() {
       <About />
       <Services />
       <Footer />
-      <Switcher />
+     
     </>
   );
 }

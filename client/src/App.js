@@ -7,7 +7,7 @@ import Register from "./pages/Register";
 import { useSelector } from "react-redux";
 import Spinner from "./components/Spinner";
 import ProtectedRoute from "./components/ProtectedRoute";
-//import PublicRoute from "./components/PublicRoute";
+import PublicRoute from "./components/PublicRoute";
 import ApplyDoctor from "./pages/ApplyDoctor";
 import NotificationPage from "./pages/NotificationPage";
 import Users from "./pages/admin/Users";
