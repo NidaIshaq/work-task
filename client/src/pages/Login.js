@@ -19,60 +19,63 @@ const Login = () => {
   
       // Make a POST request to login endpoint
       const res = await axios.post("/api/v1/user/login", values);
+    // Log the response data for debugging
+    console.log("Login API response:", res.data);
   
-      // Log the response data for debugging
-      console.log("Login API response:", res.data);
-  
-      dispatch(hideLoading());
-  
-      if (res.data.success) {
-        localStorage.setItem("token", res.data.token);
-        message.success("Login Successfully");
-  
-        // Dispatch the setUser action with user data and token
-        dispatch(setUser({ user: res.data.user, token: res.data.token }));
-  
-        // Log success message
-        console.log("Login successful. Redirecting...");
-  
-        // Navigate to home page
-        navigate("/");
-      } else {
-        message.error(res.data.message);
-        // Log error message from API
-        console.log("Login failed:", res.data.message);
-      }
-    } catch (error) {
-      dispatch(hideLoading());
-      console.error("Error during login:", error);
-      message.error("Something went wrong");
-  
-      // Log the error for further investigation
-      console.error(error);
+    dispatch(hideLoading());
+
+    if (res.data.success) {
+      localStorage.setItem("token", res.data.token);
+      message.success("Login Successfully");
+
+      // Dispatch the setUser action with user data and token
+      dispatch(setUser({ user: res.data.user, token: res.data.token }));
+
+      // Log success message
+      console.log("Login successful. Redirecting...");
+
+      // Navigate to home page
+      navigate("/");
+    } else {
+      message.error(res.data.message);
+      // Log error message from API
+      console.log("Login failed:", res.data.message);
     }
-  };
-  
+  } catch (error) {
+    dispatch(hideLoading());
+    console.error("Error during login:", error);
+    message.error("Something went wrong");
 
-  return (
-    <div className="form-container ">
-      <Form layout="vertical" onFinish={onFinishHandler} className="register-form">
-        <h3 className="text-center">Login From</h3>
-
-        <Form.Item label="Email" name="email">
-          <Input type="email" required />
-        </Form.Item>
-        <Form.Item label="Password" name="password">
-          <Input type="password" required />
-        </Form.Item>
-        <Link to="/register" className="m-2">
-          Not a user Register here
-        </Link>
-        <button className="btn btn-primary" type="submit">
-          Login
-        </button>
-      </Form>
-    </div>
-  );
+    // Log the error for further investigation
+    console.error(error);
+  }
 };
 
-export default Login;
+
+return (
+  <div className="flex justify-center items-center h-screen bg-teal-100">
+      <div className="w-full max-w-md p-8 bg-white rounded-lg shadow-lg">
+        <h3 className="text-center text-2xl font-bold mb-4">Login Form</h3>
+        <Form layout="vertical" onFinish={onFinishHandler}>
+          <Form.Item label="Email" name="email">
+            <Input type="email" required />
+          </Form.Item>
+          <Form.Item label="Password" name="password">
+            <Input type="password" required />
+          </Form.Item>
+          <Link to="/register" className="block text-center text-teal-500 hover:underline mb-4">
+            Not a user? Register here
+          </Link>
+          <button className="w-full bg-teal-500 hover:bg-teal-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
+            Login
+          </button>
+        </Form>
+      </div>
+    </div>
+);
+};
+
+export default Login;
+
+
+

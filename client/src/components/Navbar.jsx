@@ -38,7 +38,7 @@ export default function Navbar() {
         {},
         {
           headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
+            Authorization: ` Bearer ${localStorage.getItem("token")}`,
           },
         }
       );
@@ -64,7 +64,11 @@ export default function Navbar() {
       <div className="container relative flex flex-wrap items-center justify-between">
         <Link className="navbar-brand md:me-8" to="/">
           <img src={logoDark} className="inline-block dark:hidden" alt="Logo" />
-          <img src={logoLight} className="hidden dark:inline-block" alt="Logo" />
+          <img
+            src={logoLight}
+            className="hidden dark:inline-block"
+            alt="Logo"
+          />
         </Link>
 
         <div className="nav-icons flex items-center lg_992:order-2 ms-auto md:ms-8 space-x-4">
@@ -94,7 +98,19 @@ export default function Navbar() {
               Login
             </Link>
           )}
+           <div>
+          {" "}
+          <li className="inline">
+            <Link
+              to="/emergencyAppointment"
+              className="h-8 px-4 text-[12px] tracking-wider inline-flex items-center justify-center font-medium rounded-md bg-red-600 text-white uppercase"
+            >
+              Emergency
+            </Link>
+          </li>
         </div>
+        </div>
+       
 
         <div
           className={`navigation lg_992:order-1 lg_992:flex ms-auto ${
@@ -102,7 +118,10 @@ export default function Navbar() {
           }`}
           id="menu-collapse"
         >
-          <ul className="navbar-nav flex flex-row space-x-4" id="navbar-navlist">
+          <ul
+            className="navbar-nav flex flex-row space-x-4"
+            id="navbar-navlist"
+          >
             <li className="nav-item ms-0">
               <ScrollLink
                 className="nav-link"
@@ -154,6 +173,7 @@ export default function Navbar() {
           </ul>
         </div>
       </div>
+         
     </nav>
   );
 }
