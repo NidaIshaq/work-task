@@ -20,7 +20,7 @@ const LoginDoctor = () => {
       if (res.data.token) {
         localStorage.setItem("token", res.data.token);
         dispatch(setDoctor({ doctor: res.data.doctor, token: res.data.token }));
-        navigate("/doctor");
+        navigate("/doctorPanel");
       } else {
         alert("Login failed. Please check your credentials.");
       }

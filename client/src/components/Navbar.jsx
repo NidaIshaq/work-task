@@ -98,17 +98,12 @@ export default function Navbar() {
               Login
             </Link>
           )}
-           <div>
-          {" "}
-          <li className="inline">
             <Link
-              to="/emergencyAppointment"
-              className="h-8 px-4 text-[12px] tracking-wider inline-flex items-center justify-center font-medium rounded-md bg-red-600 text-white uppercase"
-            >
-              Emergency
-            </Link>
-          </li>
-        </div>
+                to="/emergencyAppointment"
+                className="h-8 px-4 text-[12px] tracking-wider inline-flex items-center justify-center font-medium rounded-md bg-red-600 text-white uppercase"
+              >
+                Emergency
+              </Link>
         </div>
        
 

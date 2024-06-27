@@ -31,6 +31,7 @@ import EmergencyAppointment from "./pages/user/EmergencyAppointment";
 import CommunityForum from "./pages/user/CommunityForum";
 import LoginDoctor from "./pages/doctor/LoginDoctor";
 import DoctorPanel from "./pages/doctor/doctorPanel";
+import AppointmentsPage from "./pages/doctor/AppointmentsPage";
 
 function App() {
   const { loading } = useSelector(
@@ -145,20 +146,17 @@ function App() {
             />
             <Route path="/diseaseDetails/:id" element={<DiseaseDetails />} />
             <Route path="/addDietPlan" element={<AddDietPlan />} />
-            <Route path="/dietPlanPage/:diseaseId" element={<DietPlanPage />} />
-            <Route path="/registerDoctor" element={<RegisterDoctor />} />
-            <Route path="/clinicsPage" element={<ClinicsPage />} />
-            <Route
-              path="/applyAppointment/:doctorId"
-              element={<ApplyAppointment />}
-            />
-            <Route
-              path="/emergencyAppointment"
-              element={<EmergencyAppointment />}
-            />
-            <Route path="/communityForum" element={<CommunityForum />} />
-            <Route path="/loginDoctor" element={<LoginDoctor />} />
-            <Route path="/doctorPanel" element={<DoctorPanel />} />
+            <Route path= "/dietPlanPage/:diseaseId" element={<DietPlanPage/>} />
+            <Route path= "/registerDoctor" element={<RegisterDoctor/>} />
+            <Route path= "/clinicsPage" element={<ClinicsPage/>} />
+            <Route path= "/applyAppointment/:doctorId" element={<ApplyAppointment/>} />
+            <Route path= "/emergencyAppointment" element={<EmergencyAppointment/>} />
+            <Route path= "/communityForum" element={<CommunityForum/>} />
+            <Route path= "/loginDoctor" element={<LoginDoctor/>} /> 
+            <Route path= "/doctorPanel" element={<DoctorPanel/>} />
+            <Route path= "/appointmentsPage" element={<AppointmentsPage/>} />
+
+
           </Routes>
         )}
       </BrowserRouter>
