@@ -46,8 +46,7 @@ function Hero() {
                   className="relative top-6 z-10" // Adjusted top-14 to top-6
                   alt="Hero"
                   style={{
-                    width: "400px", // Adjust the width here
-                    height: "400px", // Adjust the height here
+                
                   }}
                 />
                 <div
