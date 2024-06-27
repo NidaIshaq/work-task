@@ -22,7 +22,6 @@ import AddDisease from "./components/AddDisease";
 import DiseaseRecognition from "./pages/user/DiseaseRecognition";
 import DiseaseDetails from "./pages/user/DiseaseDetails";
 import Hero from "./components/Hero";
-import Emergency from "./components/Emergency";
 import AddDietPlan from "./components/AddDietPlan";
 import DietPlanPage from "./pages/DietPlanPage";
 import RegisterDoctor from "./pages/doctor/RegisterDoctor";
@@ -35,8 +34,10 @@ import DoctorPanel from "./pages/doctor/doctorPanel";
 import AppointmentsPage from "./pages/doctor/AppointmentsPage";
 
 function App() {
-  const { loading } = useSelector((state) => state.alerts || { loading: false });
-    return (
+  const { loading } = useSelector(
+    (state) => state.alerts || { loading: false }
+  );
+  return (
     <>
       <BrowserRouter>
         {loading ? (
@@ -108,21 +109,8 @@ function App() {
                 </ProtectedRoute>
               }
             />
-            <Route
-              path="/login"
-              element={
-                  <Login />
-
-              }
-            />
-            <Route
-              path="/register"
-              element={
-                <PublicRoute>
-                  <Register />
-                </PublicRoute>
-              }
-            />
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
             <Route
               path="/appointments"
               element={
@@ -139,14 +127,7 @@ function App() {
                 </ProtectedRoute>
               }
             />
-            <Route
-              path="/emergency"
-              element={
-                <ProtectedRoute>
-                  <Emergency />
-                </ProtectedRoute>
-              }
-            />
+           
             <Route
               path="/doctor"
               element={
@@ -155,19 +136,14 @@ function App() {
                 </ProtectedRoute>
               }
             />
-            <Route
-              path="/"
-              element={
-                // <ProtectedRoute>
-                  <Hero />
-                  // {/* </ProtectedRoute> */}
-              }
-            />
-
+            <Route path="/" element={<Hero />} />
             <Route path="/adminPanel" element={<AdminPanel />} />
             <Route path="/addSymptoms" element={<AddSymptoms />} />
             <Route path="/addDisease" element={<AddDisease />} />
-            <Route path="/diseaseRecognition"  element={<DiseaseRecognition />}/>
+            <Route
+              path="/diseaseRecognition"
+              element={<DiseaseRecognition />}
+            />
             <Route path="/diseaseDetails/:id" element={<DiseaseDetails />} />
             <Route path="/addDietPlan" element={<AddDietPlan />} />
             <Route path= "/dietPlanPage/:diseaseId" element={<DietPlanPage/>} />

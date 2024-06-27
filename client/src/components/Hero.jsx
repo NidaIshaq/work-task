@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import Navbar from "./Navbar";
 import About from "./About";
 import Footer from "./Footer";
-import Switcher from "../components/switcher";
+
 import Services from "./Services";
 
 function Hero() {
@@ -28,33 +28,21 @@ function Hero() {
                 between pets and their owners, we strive to offer unparalleled
                 health solutions designed to keep your furry friends happy,
                 healthy, and thriving.
-              </p>
-
-              <div className="mt-6">
-                <Link
-                  to="/registerDoctor"
-                  className="h-10 px-6 tracking-wide inline-flex items-center justify-center font-medium rounded-md bg-teal-500 text-white"
-                >
-                  Register as doctor{" "}
-                  <i className="mdi mdi-chevron-right ms-1"></i>
-                </Link>
-              </div>
-              <div className="mt-6">
+              </p> <div className="mt-6">
                 <Link
                   to="/loginDoctor"
                   className="h-10 px-6 tracking-wide inline-flex items-center justify-center font-medium rounded-md bg-teal-500 text-white"
                 >
-                  Login as doctor{" "}
+                   doctor login{" "}
                   <i className="mdi mdi-chevron-right ms-1"></i>
                 </Link>
               </div>
             </div>
-            
 
             <div className="lg:ms-8">
               <div className="relative">
                 <img
-                  src="/heroPge.png"
+                  src="/front.png"
                   className="relative top-6 z-10" // Adjusted top-14 to top-6
                   alt="Hero"
                   style={{
@@ -74,7 +62,7 @@ function Hero() {
       <About />
       <Services />
       <Footer />
-      <Switcher />
+     
     </>
   );
 }
