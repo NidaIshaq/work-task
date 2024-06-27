@@ -10,7 +10,7 @@ const DoctorPanel = () => {
 
   return (
     <div className="main-layout">
-      <Sidebar opt1="Appointments Requests" link1="/appointmentsPage" opt2="Accepted Appointments"/>
+      <Sidebar opt1="Appointments Requests" link1="/appointmentsPage" opt2="Emergency Appointments" link2="" opt3="Accepted Appointments" link3=""/>
       <div className="content">
         <header className="top-nav">
           {/* <span className="notification-icon">🔔</span> */}

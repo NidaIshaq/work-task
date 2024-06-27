@@ -51,7 +51,7 @@ const AppointmentsPage = () => {
 
   return (
     <div className="main-layout">
-      <Sidebar opt1="Appointments Requests" link1="/appointmentsPage" opt2="Accepted Appointments"/>
+      <Sidebar opt1="Appointments Requests" link1="/appointmentsPage" opt2="Emergency Appointments" link2="" opt3="Accepted Appointments" link3=""/>
       <div className="content">
         <header className="top-nav">
           {/* <span className="notification-icon">🔔</span> */}
@@ -68,8 +68,8 @@ const AppointmentsPage = () => {
             {appointments.length > 0 ? (
               appointments.map((appointment) => (
                 <div key={appointment._id} className="appointment-card">
-                  <div><strong>User Name:</strong> {appointment.userName}</div>
-                  <div><strong>Email:</strong> {appointment.userEmail}</div>
+                  <div><strong>User Name:</strong> {appointment.user.name}</div>
+                  <div><strong>Email:</strong> {appointment.user.email}</div>
                   <div><strong>Date:</strong> {appointment.date}</div>
                   <div><strong>Time:</strong> {appointment.time}</div>
                   <div><strong>Status:</strong> {appointment.status}</div>
