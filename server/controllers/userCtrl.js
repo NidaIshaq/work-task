@@ -275,29 +275,29 @@ const applyAppointment = async (req, res) => {
   }
 };
 
-const emergencyAppointment = async (req,res) =>{
+const emergencyAppointment = async (req, res) => {
   try {
-    const { doctorId } = req.body; 
-    const userId = req.body.userId; 
+    const { doctorId } = req.body;
+    const userId = req.body.userId;
 
-    
     const appointment = new appointmentModel({
       userId,
       doctorId,
       date: new Date().toISOString().slice(0, 10), // Current date
       time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }), // Current time
-      status: 'pending', 
+      status: 'pending',
+      type: 'emergency' // Setting the type to emergency
     });
 
-    
     await appointment.save();
 
-    res.status(201).json(appointment); 
+    res.status(201).json(appointment);
   } catch (error) {
     console.error('Error saving appointment:', error);
     res.status(500).json({ error: 'Failed to save appointment' });
   }
-}
+};
+
 
 const logout = async (req,res) =>{
   try {

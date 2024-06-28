@@ -14,12 +14,12 @@ const Login = () => {
     try {
       dispatch(showLoading());
   
-      // Log the values being submitted
+      
       console.log("Form values:", values);
   
-      // Make a POST request to login endpoint
+      
       const res = await axios.post("/api/v1/user/login", values);
-    // Log the response data for debugging
+    
     console.log("Login API response:", res.data);
   
     dispatch(hideLoading());
@@ -28,17 +28,17 @@ const Login = () => {
       localStorage.setItem("token", res.data.token);
       message.success("Login Successfully");
 
-      // Dispatch the setUser action with user data and token
+      
       dispatch(setUser({ user: res.data.user, token: res.data.token }));
 
-      // Log success message
+      
       console.log("Login successful. Redirecting...");
 
-      // Navigate to home page
+      
       navigate("/");
     } else {
       message.error(res.data.message);
-      // Log error message from API
+    
       console.log("Login failed:", res.data.message);
     }
   } catch (error) {
@@ -46,7 +46,6 @@ const Login = () => {
     console.error("Error during login:", error);
     message.error("Something went wrong");
 
-    // Log the error for further investigation
     console.error(error);
   }
 };

@@ -5,16 +5,16 @@ export const userSlice = createSlice({
   initialState: {
     user: null,
     doctor: null,
-    token: null,
-  },
+    token: localStorage.getItem("token"),
+    },
   reducers: {
     setUser: (state, action) => {
       state.user = action.payload.user;
-      // state.token = action.payload.token;
+      state.token = action.payload.token;
     },
     setDoctor: (state, action) => {
       state.doctor = action.payload.doctor;
-      // state.token = action.payload.token;
+      state.token = action.payload.token;
     },
     clearAuth: (state) => {
       state.user = null;

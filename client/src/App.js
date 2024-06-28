@@ -32,6 +32,8 @@ import CommunityForum from "./pages/user/CommunityForum";
 import LoginDoctor from "./pages/doctor/LoginDoctor";
 import DoctorPanel from "./pages/doctor/doctorPanel";
 import AppointmentsPage from "./pages/doctor/AppointmentsPage";
+import DoctorPanelEmergencyPage from "./pages/doctor/DoctorPanelEmergencyPage";
+import AcceptedAppointments from "./pages/doctor/AcceptedAppointments";
 
 function App() {
   const { loading } = useSelector(
@@ -155,7 +157,10 @@ function App() {
             <Route path= "/loginDoctor" element={<LoginDoctor/>} /> 
             <Route path= "/doctorPanel" element={<DoctorPanel/>} />
             <Route path= "/appointmentsPage" element={<AppointmentsPage/>} />
+            <Route path= "/doctorPanelEmergencyPage" element={<DoctorPanelEmergencyPage/>} />
+            <Route path= "/acceptedAppointments" element={<AcceptedAppointments/>} />
 
+            
 
           </Routes>
         )}

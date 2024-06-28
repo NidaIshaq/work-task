@@ -43,7 +43,7 @@ function EmergencyAppointment() {
 
   const handleEmergencyAppointment = async (doctorId) => {
     try {
-      const token = localStorage.getItem('token');  // Assuming you store the JWT token in localStorage
+      const token = localStorage.getItem('token');  
       const response = await axios.post('/api/v1/user/emergencyAppointment', {
         doctorId,
       }, {

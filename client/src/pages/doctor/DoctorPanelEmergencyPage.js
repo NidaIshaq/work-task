@@ -6,7 +6,7 @@ import "../../styles/AdminPanel.css";
 import "../../styles/AppointmentsPage.css"
 import Sidebar from "../../components/Sidebar";
 
-const AppointmentsPage = () => {
+const DoctorPanelEmergencyPage = () => {
   const navigate = useNavigate();
   const doctor = useSelector((state) => state.user.doctor);
   const [appointments, setAppointments] = useState([]);
@@ -16,15 +16,15 @@ const AppointmentsPage = () => {
       if (!doctor) return;
 
       try {
-        const response = await axios.get(`/api/v1/doctor/fetchAppointments/${doctor._id}`);
+        const response = await axios.get(`/api/v1/doctor/fetchEmergencyAppointments/${doctor._id}`);
         if (response.data.success) {
           setAppointments(response.data.appointments);
-          console.log('Appointments fetched successfully:', response.data.appointments);
+          console.log('Emergency appointments fetched successfully:', response.data.appointments);
         } else {
-          console.error("Failed to fetch appointments:", response.data.message);
+          console.error("Failed to fetch emergency appointments:", response.data.message);
         }
       } catch (error) {
-        console.error("Error fetching appointments:", error);
+        console.error("Error fetching emergency appointments:", error);
       }
     };
 
@@ -54,16 +54,14 @@ const AppointmentsPage = () => {
       <Sidebar opt1="Appointments Requests" link1="/appointmentsPage" opt2="Emergency Appointments" link2="/doctorPanelEmergencyPage" opt3="Accepted Appointments" link3="/acceptedAppointments"/>
       <div className="content">
         <header className="top-nav">
-          {/* <span className="notification-icon">🔔</span> */}
           {doctor && (
             <div className="doctor-info">
               <span className="doctor-name">Dr. {doctor.firstName} {doctor.lastName}</span>
-              {/* <span className="doctor-id">ID: {doctor._id}</span> */}
             </div>
           )}
         </header>
         <main className="main-content">
-          <h1 className="main-heading">Appointments</h1>
+          <h1 className="main-heading">Emergency Appointments</h1>
           <div className="appointments-list">
             {appointments.length > 0 ? (
               appointments.map((appointment) => (
@@ -90,7 +88,7 @@ const AppointmentsPage = () => {
                 </div>
               ))
             ) : (
-              <p>No appointments found.</p>
+              <p>No emergency appointments found.</p>
             )}
           </div>
         </main>
@@ -99,4 +97,4 @@ const AppointmentsPage = () => {
   );
 };
 
-export default AppointmentsPage;
+export default DoctorPanelEmergencyPage;

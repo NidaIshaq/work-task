@@ -202,47 +202,6 @@ const getAllDoctors = async (req, res) => {
   }
 };
 
-// const fetchAppointments = async (req, res) => {
-//   try {
-//     const appointments = await appointmentModel.find({ doctorId: req.params.doctorId });
-
-//     const appointmentsWithUserData = await Promise.all(
-//       appointments.map(async (appointment) => {
-//         const user = await userModel.findById(appointment.userId); 
-//         return {
-//           ...appointment._doc, 
-//           user, 
-//         };
-//       })
-//     );
-
-  
-//     res.status(200).json({ success: true, appointments: appointmentsWithUserData });
-//   } catch (error) {
-//     res.status(500).json({ success: false, message: error.message });
-//   }
-// };
-
-// const changeAppointmentStatus = async (req, res) => {
-//   try {
-//     const { appointmentId } = req.params;
-//     const { status } = req.body;
-
-//     const appointment = await appointmentModel.findByIdAndUpdate(
-//       appointmentId,
-//       { status },
-//       { new: true }
-//     );
-
-//     if (!appointment) {
-//       return res.status(404).json({ success: false, message: "Appointment not found" });
-//     }
-
-//     res.status(200).json({ success: true, appointment });
-//   } catch (error) {
-//     res.status(500).json({ success: false, message: error.message });
-//   }
-// };
 
 // Create a transporter
 const createTransporter = async () => {
@@ -283,8 +242,12 @@ const sendEmail = async (to, subject, text) => {
 
 const fetchAppointments = async (req, res) => {
   try {
-    const appointments = await appointmentModel.find({ doctorId: req.params.doctorId });
-
+    
+    const appointments = await appointmentModel.find({ 
+      doctorId: req.params.doctorId,
+      type: 'normal',
+      status: 'pending'
+    });
     const appointmentsWithUserData = await Promise.all(
       appointments.map(async (appointment) => {
         const user = await userModel.findById(appointment.userId);
@@ -342,6 +305,77 @@ const changeAppointmentStatus = async (req, res) => {
   }
 };
 
+const fetchEmergencyAppointments = async (req, res) => {
+  try {
+    const appointments = await appointmentModel.find({ 
+      doctorId: req.params.doctorId,
+      type: 'emergency',
+      status: 'pending'
+    });
+
+    const appointmentsWithUserData = await Promise.all(
+      appointments.map(async (appointment) => {
+        const user = await userModel.findById(appointment.userId);
+        return {
+          ...appointment._doc,
+          user,
+        };
+      })
+    );
+
+    res.status(200).json({ success: true, appointments: appointmentsWithUserData });
+  } catch (error) {
+    console.error('Error fetching emergency appointments:', error);
+    res.status(500).json({ success: false, message: error.message });
+  }
+};
+
+const acceptedAppointments = async (req, res) => {
+  try {
+    const appointments = await appointmentModel.find({ 
+      doctorId: req.params.doctorId,
+    
+      status: 'accepted'
+    });
+
+    const appointmentsWithUserData = await Promise.all(
+      appointments.map(async (appointment) => {
+        const user = await userModel.findById(appointment.userId);
+        return {
+          ...appointment._doc,
+          user,
+        };
+      })
+    );
+
+    res.status(200).json({ success: true, appointments: appointmentsWithUserData });
+  } catch (error) {
+    console.error('Error fetching accepted appointments:', error);
+    res.status(500).json({ success: false, message: error.message });
+  }
+};
+
+const changeAppointmentStatusToDone = async (req, res) => {
+  try {
+    const { appointmentId } = req.params;
+    
+    const appointment = await appointmentModel.findByIdAndUpdate(
+      appointmentId,
+      { status: 'done' },
+      { new: true }
+    );
+
+    if (!appointment) {
+      return res.status(404).json({ success: false, message: 'Appointment not found' });
+    }
+
+    res.status(200).json({ success: true, appointment });
+  } catch (error) {
+    console.error('Error updating appointment status to done:', error);
+    res.status(500).json({ success: false, message: 'Failed to update appointment status' });
+  }
+};
+
 module.exports = {
   getDoctorInfoController,
   updateProfileController,
@@ -352,5 +386,8 @@ module.exports = {
  getAllDoctors,
  loginDoctor,
  fetchAppointments,
- changeAppointmentStatus
+ changeAppointmentStatus,
+ fetchEmergencyAppointments,
+ acceptedAppointments,
+ changeAppointmentStatusToDone
 };
