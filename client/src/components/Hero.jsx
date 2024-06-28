@@ -33,7 +33,7 @@ function Hero() {
                   to="/loginDoctor"
                   className="h-10 px-6 tracking-wide inline-flex items-center justify-center font-medium rounded-md bg-teal-500 text-white"
                 >
-                   doctor login{" "}
+                   Login as Doctor{" "}
                   <i className="mdi mdi-chevron-right ms-1"></i>
                 </Link>
               </div>
