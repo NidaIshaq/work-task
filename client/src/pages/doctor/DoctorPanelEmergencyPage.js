@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
 import "../../styles/AdminPanel.css";
-import "../../styles/AppointmentsPage.css"
+import "../../styles/AppointmentsPage.css";
 import Sidebar from "../../components/Sidebar";
 
 const DoctorPanelEmergencyPage = () => {
@@ -29,16 +29,14 @@ const DoctorPanelEmergencyPage = () => {
     };
 
     fetchAppointments();
-  }, [appointments]);
+  }, [doctor]); // Only run when doctor changes or on mount
 
   const handleStatusChange = async (appointmentId, newStatus) => {
     try {
       const response = await axios.patch(`/api/v1/doctor/changeAppointmentStatus/${appointmentId}`, { status: newStatus });
       if (response.data.success) {
         setAppointments((prev) =>
-          prev.map((appointment) =>
-            appointment._id === appointmentId ? { ...appointment, status: newStatus } : appointment
-          )
+          prev.filter((appointment) => appointment._id !== appointmentId)
         );
         console.log(`Appointment ${appointmentId} status changed to ${newStatus}`);
       } else {

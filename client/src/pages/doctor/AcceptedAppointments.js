@@ -29,20 +29,18 @@ const AcceptedAppointments = () => {
     };
 
     fetchAppointments();
-  }, [appointments]);
+  }, [doctor]); // Only run when doctor changes or on mount
 
   const handleDone = async (appointmentId) => {
     try {
       const response = await axios.patch(`/api/v1/doctor/changeAppointmentStatusToDone/${appointmentId}`);
       if (response.data.success) {
-        setAppointments((prev) =>
-          prev.map((appointment) =>
-            appointment._id === appointmentId ? { ...appointment, status: 'done' } : appointment
-          )
+        // Update the state to remove the completed appointment
+        setAppointments((prevAppointments) => 
+          prevAppointments.filter(appointment => appointment._id !== appointmentId)
         );
         console.log(`Appointment ${appointmentId} status changed to done`);
         alert(`Appointment ${appointmentId} status changed to done`);
-
       } else {
         console.error("Failed to update appointment status:", response.data.message);
       }
