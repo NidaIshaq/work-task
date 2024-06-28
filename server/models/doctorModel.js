@@ -2,9 +2,7 @@ const mongoose = require("mongoose");
 
 const doctorSchema = new mongoose.Schema(
   {
-    // userId: {
-    //   type: String,
-    // },
+   
     firstName: {
       type: String,
       required: [true, "first name is required"],
@@ -49,10 +47,7 @@ const doctorSchema = new mongoose.Schema(
       type: Number,
       required: [true, "fee is required"],
     },
-    status: {
-      type: String,
-      default: "pending",
-    },
+  
     startTime: {
       type: String,
       required: [true, "wrok timing is required"],

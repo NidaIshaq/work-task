@@ -46,6 +46,20 @@ function App() {
           <Spinner />
         ) : (
           <Routes>
+             <Route path="/diseaseDetails/:id" element={<DiseaseDetails />} />
+            <Route path="/addDietPlan" element={<AddDietPlan />} />
+            <Route path= "/dietPlanPage/:diseaseId" element={<DietPlanPage/>} />
+            <Route path= "/registerDoctor" element={<RegisterDoctor/>} />
+            <Route path= "/clinicsPage" element={<ClinicsPage/>} />
+            <Route path= "/applyAppointment/:doctorId" element={<ApplyAppointment/>} />
+            <Route path= "/emergencyAppointment" element={<EmergencyAppointment/>} />
+            <Route path= "/communityForum" element={<CommunityForum/>} />
+            <Route path= "/loginDoctor" element={<LoginDoctor/>} /> 
+            <Route path= "/doctorPanel" element={<DoctorPanel/>} />
+            <Route path= "/appointmentsPage" element={<AppointmentsPage/>} />
+            <Route path= "/doctorPanelEmergencyPage" element={<DoctorPanelEmergencyPage/>} />
+            <Route path= "/acceptedAppointments" element={<AcceptedAppointments/>} />
+
             <Route
               path="/apply-doctor"
               element={
@@ -146,20 +160,7 @@ function App() {
               path="/diseaseRecognition"
               element={<DiseaseRecognition />}
             />
-            <Route path="/diseaseDetails/:id" element={<DiseaseDetails />} />
-            <Route path="/addDietPlan" element={<AddDietPlan />} />
-            <Route path= "/dietPlanPage/:diseaseId" element={<DietPlanPage/>} />
-            <Route path= "/registerDoctor" element={<RegisterDoctor/>} />
-            <Route path= "/clinicsPage" element={<ClinicsPage/>} />
-            <Route path= "/applyAppointment/:doctorId" element={<ApplyAppointment/>} />
-            <Route path= "/emergencyAppointment" element={<EmergencyAppointment/>} />
-            <Route path= "/communityForum" element={<CommunityForum/>} />
-            <Route path= "/loginDoctor" element={<LoginDoctor/>} /> 
-            <Route path= "/doctorPanel" element={<DoctorPanel/>} />
-            <Route path= "/appointmentsPage" element={<AppointmentsPage/>} />
-            <Route path= "/doctorPanelEmergencyPage" element={<DoctorPanelEmergencyPage/>} />
-            <Route path= "/acceptedAppointments" element={<AcceptedAppointments/>} />
-
+           
             
 
           </Routes>

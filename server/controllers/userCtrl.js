@@ -49,7 +49,7 @@ const loginController = async (req, res) => {
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
       expiresIn: "1d",
     });
-    // Include the user data in the response
+    
     res.status(200).send({ message: "Login Success", success: true, token, user });
   } catch (error) {
     console.log(error);
@@ -126,114 +126,11 @@ const applyDoctorController = async (req, res) => {
   }
 };
 
-// delete notifications
-const deleteAllNotificationController = async (req, res) => {
-  try {
-    const user = await userModel.findOne({ _id: req.body.userId });
-    user.notifcation = [];
-    user.seennotification = [];
-    const updatedUser = await user.save();
-    updatedUser.password = undefined;
-    res.status(200).send({
-      success: true,
-      message: "Notifications Deleted successfully",
-      data: updatedUser,
-    });
-  } catch (error) {
-    console.log(error);
-    res.status(500).send({
-      success: false,
-      message: "unable to delete all notifications",
-      error,
-    });
-  }
-};
 
-//GET ALL DOC
-const getAllDocotrsController = async (req, res) => {
-  try {
-    const doctors = await doctorModel.find({ status: "approved" });
-    res.status(200).send({
-      success: true,
-      message: "Docots Lists Fetched Successfully",
-      data: doctors,
-    });
-  } catch (error) {
-    console.log(error);
-    res.status(500).send({
-      success: false,
-      error,
-      message: "Errro WHile Fetching DOcotr",
-    });
-  }
-};
 
-//BOOK APPOINTMENT
-const bookeAppointmnetController = async (req, res) => {
-  try {
-    req.body.date = moment(req.body.date, "DD-MM-YYYY").toISOString();
-    req.body.time = moment(req.body.time, "HH:mm").toISOString();
-    req.body.status = "pending";
-    const newAppointment = new appointmentModel(req.body);
-    await newAppointment.save();
-    const user = await userModel.findOne({ _id: req.body.doctorInfo.userId });
-    user.notifcation.push({
-      type: "New-appointment-request",
-      message: `A nEw Appointment Request from ${req.body.userInfo.name}`,
-      onCLickPath: "/user/appointments",
-    });
-    await user.save();
-    res.status(200).send({
-      success: true,
-      message: "Appointment Book succesfully",
-    });
-  } catch (error) {
-    console.log(error);
-    res.status(500).send({
-      success: false,
-      error,
-      message: "Error While Booking Appointment",
-    });
-  }
-};
 
-// booking bookingAvailabilityController
-const bookingAvailabilityController = async (req, res) => {
-  try {
-    const date = moment(req.body.date, "DD-MM-YY").toISOString();
-    const fromTime = moment(req.body.time, "HH:mm")
-      .subtract(1, "hours")
-      .toISOString();
-    const toTime = moment(req.body.time, "HH:mm").add(1, "hours").toISOString();
-    const doctorId = req.body.doctorId;
-    const appointments = await appointmentModel.find({
-      doctorId,
-      date,
-      time: {
-        $gte: fromTime,
-        $lte: toTime,
-      },
-    });
-    if (appointments.length > 0) {
-      return res.status(200).send({
-        message: "Appointments not Availibale at this time",
-        success: true,
-      });
-    } else {
-      return res.status(200).send({
-        success: true,
-        message: "Appointments available",
-      });
-    }
-  } catch (error) {
-    console.log(error);
-    res.status(500).send({
-      success: false,
-      error,
-      message: "Error In Booking",
-    });
-  }
-};
+
+
 
 const userAppointmentsController = async (req, res) => {
   try {
@@ -319,10 +216,6 @@ module.exports = {
   registerController,
   authController,
   applyDoctorController,
-  deleteAllNotificationController,
-  getAllDocotrsController,
-  bookeAppointmnetController,
-  bookingAvailabilityController,
   userAppointmentsController,
   applyAppointment,
   emergencyAppointment,
