@@ -22,7 +22,7 @@ function Hero() {
                 Comprehensive Health Solutions for Your Beloved Dogs and Cats
               </h1>
               <p className="text-slate-400 text-lg max-w-xl">
-                Welcome to Upcover, where we are dedicated to ensuring the
+                Welcome to petcare, where we are dedicated to ensuring the
                 health and well-being of your cherished canine and feline
                 companions. With a deep understanding of the special bond
                 between pets and their owners, we strive to offer unparalleled
@@ -46,8 +46,7 @@ function Hero() {
                   className="relative top-6 z-10" // Adjusted top-14 to top-6
                   alt="Hero"
                   style={{
-                    width: "400px", // Adjust the width here
-                    height: "400px", // Adjust the height here
+                
                   }}
                 />
                 <div
