@@ -10,7 +10,7 @@ const Sidebar = (props) => {
         
 
               <aside className="sidebar">
-                <div className="sidebar-header">DOC APP</div>
+                <div className="sidebar-header">Pet Care</div>
                 <nav className="sidebar-nav">
                   <ul>
                     <li><Link to={props.link1}>{props.opt1}</Link></li>
