@@ -20,8 +20,10 @@ const DoctorPanelEmergencyPage = () => {
         if (response.data.success) {
           setAppointments(response.data.appointments);
           console.log('Emergency appointments fetched successfully:', response.data.appointments);
+
         } else {
           console.error("Failed to fetch emergency appointments:", response.data.message);
+
         }
       } catch (error) {
         console.error("Error fetching emergency appointments:", error);
@@ -39,8 +41,12 @@ const DoctorPanelEmergencyPage = () => {
           prev.filter((appointment) => appointment._id !== appointmentId)
         );
         console.log(`Appointment ${appointmentId} status changed to ${newStatus}`);
+        alert(`Appointment ${appointmentId} status changed to ${newStatus}`);
+
       } else {
         console.error("Failed to update appointment status:", response.data.message);
+        alert("Failed to update appointment status:", response.data.message);
+
       }
     } catch (error) {
       console.error("Error updating appointment status:", error);

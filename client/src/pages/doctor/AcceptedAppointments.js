@@ -43,6 +43,8 @@ const AcceptedAppointments = () => {
         alert(`Appointment ${appointmentId} status changed to done`);
       } else {
         console.error("Failed to update appointment status:", response.data.message);
+        alert("Failed to update appointment status:", response.data.message);
+
       }
     } catch (error) {
       console.error("Error updating appointment status to done:", error);
