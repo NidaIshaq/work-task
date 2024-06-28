@@ -18,10 +18,12 @@ const AppointmentsPage = () => {
       try {
         const response = await axios.get(`/api/v1/doctor/fetchAppointments/${doctor._id}`);
         if (response.data.success) {
+          
           setAppointments(response.data.appointments);
-          console.log('Appointments fetched successfully:', response.data.appointments);
+          console.log('Appointments fetched and filtered successfully:', response.data.appointments);
         } else {
           console.error("Failed to fetch appointments:", response.data.message);
+
         }
       } catch (error) {
         console.error("Error fetching appointments:", error);
@@ -29,7 +31,7 @@ const AppointmentsPage = () => {
     };
 
     fetchAppointments();
-  }, [doctor]); // Only run when doctor changes or on mount
+  }, [doctor]);
 
   const handleStatusChange = async (appointmentId, newStatus) => {
     try {
@@ -41,8 +43,12 @@ const AppointmentsPage = () => {
           )
         );
         console.log(`Appointment ${appointmentId} status changed to ${newStatus}`);
+        alert(`Appointment ${appointmentId} status changed to ${newStatus}`);
+
       } else {
         console.error("Failed to update appointment status:", response.data.message);
+        alert("Failed to update appointment status:", response.data.message);
+
       }
     } catch (error) {
       console.error("Error updating appointment status:", error);
