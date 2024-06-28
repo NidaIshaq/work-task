@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
 import "../../styles/AdminPanel.css";
-import "../../styles/AppointmentsPage.css"
+import "../../styles/AppointmentsPage.css";
 import Sidebar from "../../components/Sidebar";
 
 const AppointmentsPage = () => {
@@ -29,7 +29,7 @@ const AppointmentsPage = () => {
     };
 
     fetchAppointments();
-  }, [appointments]);
+  }, [doctor]); // Only run when doctor changes or on mount
 
   const handleStatusChange = async (appointmentId, newStatus) => {
     try {
@@ -54,11 +54,9 @@ const AppointmentsPage = () => {
       <Sidebar opt1="Appointments Requests" link1="/appointmentsPage" opt2="Emergency Appointments" link2="/doctorPanelEmergencyPage" opt3="Accepted Appointments" link3="/acceptedAppointments"/>
       <div className="content">
         <header className="top-nav">
-          {/* <span className="notification-icon">🔔</span> */}
           {doctor && (
             <div className="doctor-info">
               <span className="doctor-name">Dr. {doctor.firstName} {doctor.lastName}</span>
-              {/* <span className="doctor-id">ID: {doctor._id}</span> */}
             </div>
           )}
         </header>
