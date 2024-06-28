@@ -65,7 +65,7 @@ const scheduleMealReminders = async (req, res) => {
   
       // Define meal times and their corresponding labels
       const mealTimes = [
-        { time: '16:22', meal: 'Morning Meal' },
+        { time: '08:00', meal: 'Morning Meal' },
         { time: '13:00', meal: 'Afternoon Meal' },
         { time: '17:00', meal: 'Late Afternoon Meal' },
         { time: '21:00', meal: 'Evening Meal' },

@@ -19,7 +19,11 @@ const appointmentSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    status: {
+    type:{               //normal or emergency
+      type:String,
+      default: "normal",
+    },
+    status: {           // pending, accepted, rejected, done
       type: String,
       required: true,
       default: "pending",
