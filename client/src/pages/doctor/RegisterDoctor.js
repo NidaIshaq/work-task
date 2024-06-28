@@ -306,7 +306,7 @@ const RegisterDoctor = () => {
             <img
               src="/vet-doc-removebg-preview.png"
               alt="Doctor"
-              className="rounded-lg shadow-lg w-full h-70 object-cover"
+              className="w-full h-70 object-cover"
             />
           </div>
         </div>

@@ -88,7 +88,7 @@ const AppointmentsPage = () => {
                 </div>
               ))
             ) : (
-              <p>No appointments found.</p>
+              <p>No Appointments Found.</p>
             )}
           </div>
         </main>
