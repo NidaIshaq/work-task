@@ -9,9 +9,12 @@ const {
   changeAppointmentStatus,
   fetchEmergencyAppointments,
   acceptedAppointments,
-  changeAppointmentStatusToDone
+  changeAppointmentStatusToDone,
+  getDoctorData,
+  updateDoctor
 } = require("../controllers/doctorCtrl");
 const authMiddleware = require("../middlewares/authMiddleware");
+const doctorAuthMiddleware = require("../middlewares/doctorAuthMiddleware")
 const router = express.Router();
 
 
@@ -24,5 +27,8 @@ router.patch("/changeAppointmentStatus/:appointmentId", changeAppointmentStatus)
 router.get(`/fetchEmergencyAppointments/:doctorId`,fetchEmergencyAppointments)
 router.get(`/acceptedAppointments/:doctorId`,acceptedAppointments)
 router.patch('/changeAppointmentStatusToDone/:appointmentId', changeAppointmentStatusToDone);
+router.get(`/getDoctorData/:id`,getDoctorData);
+router.patch('/updateDoctor/:id',updateDoctor);
+
 
 module.exports = router;
