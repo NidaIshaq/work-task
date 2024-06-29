@@ -269,14 +269,46 @@ const changeAppointmentStatusToDone = async (req, res) => {
   }
 };
 
+const getDoctorData = async (req, res) => {
+  try {
+    console.log("Doctors id ==",req.params.id)
+    const doctor = await doctorModel.findById(req.params.id);
+    if (!doctor) {
+      return res.status(404).json({ message: 'Doctor not found' });
+    }
+    res.json(doctor);
+  } catch (error) {
+    res.status(500).json({ message: 'Server error' });
+  }
+};
+
+// Update doctor details
+const updateDoctor = async (req, res) => {
+  try {
+    const updates = req.body;
+    delete updates.password; // Exclude the password field
+    
+    const doctor = await doctorModel.findByIdAndUpdate(req.params.id, updates, { new: true });
+    if (!doctor) {
+      return res.status(404).json({ message: 'Doctor not found' });
+    }
+    res.json(doctor);
+  } catch (error) {
+    res.status(500).json({ message: 'Server error' });
+  }
+};
+
 module.exports = {
  
-  registerDoctor,
+registerDoctor,
  getAllDoctors,
  loginDoctor,
  fetchAppointments,
  changeAppointmentStatus,
  fetchEmergencyAppointments,
  acceptedAppointments,
- changeAppointmentStatusToDone
+ changeAppointmentStatusToDone,
+ getDoctorData,
+ updateDoctor
+
 };

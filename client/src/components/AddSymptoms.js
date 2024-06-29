@@ -37,8 +37,6 @@ const AddSymptoms = () => {
               <Sidebar opt1="Add Symptoms" link1="/addSymptoms" opt2="Add Diseases" link2="/addDisease" opt3="Add Diet Plan" link3="/addDietPlan"/>
               <div className="content">
                 <header className="top-nav">
-                  <span className="user-name">RAFIA MOAZUM</span>
-                  <span className="notification-icon">🔔</span>
                 </header>
                 <main className="main-content">
                   <h1 className="main-heading">Add Symptoms</h1>

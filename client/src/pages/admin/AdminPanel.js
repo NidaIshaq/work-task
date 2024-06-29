@@ -18,7 +18,6 @@ const AdminPanel = () => {
       />
       <div className="content">
         <header className="top-nav">
-          <span className="notification-icon">🔔</span>
         </header>
         <main className="main-content">
           <h1 className="main-heading">Admin Panel</h1>
