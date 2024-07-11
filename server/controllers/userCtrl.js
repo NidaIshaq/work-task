@@ -6,7 +6,6 @@ const appointmentModel = require("../models/appointmentModel");
 const moment = require("moment");
 const dotenv = require("dotenv");
 
-
 //register callback
 const registerController = async (req, res) => {
   try {
@@ -49,14 +48,20 @@ const loginController = async (req, res) => {
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
       expiresIn: "1d",
     });
+<<<<<<< HEAD
+    // Include the user data in the response
+    res
+      .status(200)
+      .send({ message: "Login Success", success: true, token, user });
+=======
     
     res.status(200).send({ message: "Login Success", success: true, token, user });
+>>>>>>> origin/main
   } catch (error) {
     console.log(error);
     res.status(500).send({ message: `Error in Login CTRL ${error.message}` });
   }
 };
-
 
 const authController = async (req, res) => {
   try {
@@ -155,8 +160,38 @@ const userAppointmentsController = async (req, res) => {
 const applyAppointment = async (req, res) => {
   try {
     const { date, time, doctorId } = req.body;
-    const userId = req.body.userId;  
-    console.log('userId==', userId)
+    const userId = req.body.userId;
+
+    // Fetch doctor info to get their available time slots
+    const doctor = await doctorModel.findById(doctorId);
+    if (!doctor) {
+      return res.status(404).json({ message: 'Doctor not found' });
+    }
+
+    const startTime = moment(doctor.startTime, "HH:mm");
+    const endTime = moment(doctor.endTime, "HH:mm");
+    const appointmentTime = moment(time, "HH:mm");
+
+    // Check if the appointment time is within the doctor's available time slots
+    if (!appointmentTime.isBetween(startTime, endTime, null, '[]')) {
+      return res.status(400).json({
+        message: `Doctor is only available between ${doctor.startTime} and ${doctor.endTime}`,
+      });
+    }
+
+    // Check if there's already an appointment at the given time and date for the doctor
+    const existingAppointment = await appointmentModel.findOne({
+      doctorId,
+      date,
+      time,
+    });
+
+    if (existingAppointment) {
+      return res.status(400).json({
+        message: 'This time slot is already booked. Please choose another time.',
+      });
+    }
+
     const newAppointment = new appointmentModel({
       userId,
       doctorId,
@@ -165,12 +200,16 @@ const applyAppointment = async (req, res) => {
     });
 
     await newAppointment.save();
-    res.status(201).json({ message: 'Appointment created successfully', appointment: newAppointment });
+    return res.status(201).json({
+      message: 'Appointment created successfully',
+      appointment: newAppointment,
+    });
   } catch (error) {
-    console.error('Error creating appointment:', error); // Log the error
-    res.status(500).json({ message: 'Server error', error });
+    console.error('Error creating appointment:', error);
+    return res.status(500).json({ message: 'Server error', error });
   }
 };
+
 
 const emergencyAppointment = async (req, res) => {
   try {
@@ -181,22 +220,24 @@ const emergencyAppointment = async (req, res) => {
       userId,
       doctorId,
       date: new Date().toISOString().slice(0, 10), // Current date
-      time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }), // Current time
-      status: 'pending',
-      type: 'emergency' // Setting the type to emergency
+      time: new Date().toLocaleTimeString([], {
+        hour: "2-digit",
+        minute: "2-digit",
+      }), // Current time
+      status: "pending",
+      type: "emergency", // Setting the type to emergency
     });
 
     await appointment.save();
 
     res.status(201).json(appointment);
   } catch (error) {
-    console.error('Error saving appointment:', error);
-    res.status(500).json({ error: 'Failed to save appointment' });
+    console.error("Error saving appointment:", error);
+    res.status(500).json({ error: "Failed to save appointment" });
   }
 };
 
-
-const logout = async (req,res) =>{
+const logout = async (req, res) => {
   try {
     // Clear the token on the client side
     res.status(200).json({
@@ -209,7 +250,7 @@ const logout = async (req,res) =>{
       message: "Logout failed",
     });
   }
-}
+};
 
 module.exports = {
   loginController,
@@ -219,5 +260,5 @@ module.exports = {
   userAppointmentsController,
   applyAppointment,
   emergencyAppointment,
-  logout
+  logout,
 };

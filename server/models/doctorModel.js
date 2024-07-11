@@ -13,7 +13,7 @@ const doctorSchema = new mongoose.Schema(
     },
     cnic:{
       type: String,
-      required: [true, "last name is required"],
+      required: [true, "CNIC is required"],
     },
     phone: {
       type: String,
