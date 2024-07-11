@@ -8,7 +8,7 @@ const RegisterDoctor = () => {
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
-    cnic: "",
+    nic: "",
     phone: "",
     email: "",
     clinicName: "",
