@@ -34,6 +34,7 @@ import DoctorPanel from "./pages/doctor/doctorPanel";
 import AppointmentsPage from "./pages/doctor/AppointmentsPage";
 import DoctorPanelEmergencyPage from "./pages/doctor/DoctorPanelEmergencyPage";
 import AcceptedAppointments from "./pages/doctor/AcceptedAppointments";
+import UpdateDoctorProfile from "./pages/doctor/UpdateDoctorProfile";
 
 function App() {
   const { loading } = useSelector(
@@ -46,6 +47,21 @@ function App() {
           <Spinner />
         ) : (
           <Routes>
+             <Route path="/diseaseDetails/:id" element={<DiseaseDetails />} />
+            <Route path="/addDietPlan" element={<AddDietPlan />} />
+            <Route path= "/dietPlanPage/:diseaseId" element={<DietPlanPage/>} />
+            <Route path= "/registerDoctor" element={<RegisterDoctor/>} />
+            <Route path= "/clinicsPage" element={<ClinicsPage/>} />
+            <Route path= "/applyAppointment/:doctorId" element={<ApplyAppointment/>} />
+            <Route path= "/emergencyAppointment" element={<EmergencyAppointment/>} />
+            <Route path= "/communityForum" element={<CommunityForum/>} />
+            <Route path= "/loginDoctor" element={<LoginDoctor/>} /> 
+            <Route path= "/doctorPanel" element={<DoctorPanel/>} />
+            <Route path= "/appointmentsPage" element={<AppointmentsPage/>} />
+            <Route path= "/doctorPanelEmergencyPage" element={<DoctorPanelEmergencyPage/>} />
+            <Route path= "/acceptedAppointments" element={<AcceptedAppointments/>} />
+            <Route path= "/updateDoctorProfile" element={<UpdateDoctorProfile/>} />
+
             <Route
               path="/apply-doctor"
               element={
@@ -57,9 +73,9 @@ function App() {
             <Route
               path="/profile"
               element={
-                <ProtectedRoute>
+             
                   <Profile />
-                </ProtectedRoute>
+               
               }
             />
             <Route
@@ -146,20 +162,7 @@ function App() {
               path="/diseaseRecognition"
               element={<DiseaseRecognition />}
             />
-            <Route path="/diseaseDetails/:id" element={<DiseaseDetails />} />
-            <Route path="/addDietPlan" element={<AddDietPlan />} />
-            <Route path= "/dietPlanPage/:diseaseId" element={<DietPlanPage/>} />
-            <Route path= "/registerDoctor" element={<RegisterDoctor/>} />
-            <Route path= "/clinicsPage" element={<ClinicsPage/>} />
-            <Route path= "/applyAppointment/:doctorId" element={<ApplyAppointment/>} />
-            <Route path= "/emergencyAppointment" element={<EmergencyAppointment/>} />
-            <Route path= "/communityForum" element={<CommunityForum/>} />
-            <Route path= "/loginDoctor" element={<LoginDoctor/>} /> 
-            <Route path= "/doctorPanel" element={<DoctorPanel/>} />
-            <Route path= "/appointmentsPage" element={<AppointmentsPage/>} />
-            <Route path= "/doctorPanelEmergencyPage" element={<DoctorPanelEmergencyPage/>} />
-            <Route path= "/acceptedAppointments" element={<AcceptedAppointments/>} />
-
+           
             
 
           </Routes>

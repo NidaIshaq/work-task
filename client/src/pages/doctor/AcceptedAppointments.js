@@ -53,7 +53,7 @@ const AcceptedAppointments = () => {
 
   return (
     <div className="main-layout">
-      <Sidebar opt1="Appointments Requests" link1="/appointmentsPage" opt2="Emergency Appointments" link2="/doctorPanelEmergencyPage" opt3="Accepted Appointments" link3="/acceptedAppointments"/>
+      <Sidebar opt1="Appointments Requests" link1="/appointmentsPage" opt2="Emergency Appointments" link2="/doctorPanelEmergencyPage" opt3="Accepted Appointments" link3="/acceptedAppointments" opt4="Update Profile" link4="/updateDoctorProfile"/>
       <div className="content">
         <header className="top-nav">
           {doctor && (
